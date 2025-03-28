@@ -1,6 +1,6 @@
 import express from "express";
-import fs from "fs/promises";
 import selectWord from "./utils/selectWord.js";
+import { getWordList } from "./utils/loadWordList.js";
 
 const app = express();
 
@@ -9,25 +9,8 @@ const app = express();
 /////
 app.use(express.json());
 
-//Wordlist which will contain all words from data file.
-let wordList = [];
-
-//Function to read in the words from the file.
-export async function loadWordList() {
-  try {
-    const data = await fs.readFile("./data/words_alpha.txt", "utf8");
-
-    wordList = data.split("\n");
-
-    console.log(`Laddade ${wordList.length} ord från ordlistan`);
-  } catch (error) {
-    console.error("Error when reading wordlist:", error);
-  }
-}
-
-loadWordList();
-
 app.get("/api/word", (req, res) => {
+  const wordList = getWordList();
   // Kontrollera att ordlistan är laddad
   if (!wordList.length) {
     return res.status(500).json({ error: "Wordlist is not loaded yet." });
