@@ -1,13 +1,9 @@
 function selectWord(wordList, desiredLength, uniqueLettersOnly = false) {
   if (!Array.isArray(wordList) || wordList.length === 0) {
-    console.log("Ordlistan är tom eller ogiltig");
     return null;
   }
 
   if (!Number.isInteger(desiredLength) || desiredLength <= 0) {
-    console.log(
-      `Ogiltig längd: ${desiredLength}. Måste vara ett positivt heltal.`
-    );
     return null;
   }
 
@@ -26,12 +22,7 @@ function selectWord(wordList, desiredLength, uniqueLettersOnly = false) {
     return true;
   });
 
-  console.log(
-    `Filtrerade ord: ${filteredWords.length} av ${wordList.length} uppfyller kriterierna`
-  );
-
   if (filteredWords.length === 0) {
-    console.log("Inga ord uppfyller kriterierna");
     return null;
   }
 
