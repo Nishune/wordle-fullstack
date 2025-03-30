@@ -1,6 +1,6 @@
 import express from "express";
 import path from "path";
-import handleGetWord from "./utils/getRandomWord.js";
+import handleNewGame from "./utils/newGame.js";
 
 const app = express();
 
@@ -18,8 +18,7 @@ app.use(express.static("../client/dist"));
 /////
 
 //API for retrieving a word.
-app.get("/api/word", handleGetWord);
-
+app.get("/api/game/new", handleNewGame);
 ///
 //API
 ///
