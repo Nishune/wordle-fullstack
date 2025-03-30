@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import handleNewGame from "./utils/newGame.js";
+import handleGameGuess from "./utils/gameGuess.js";
 
 const app = express();
 
@@ -17,11 +18,8 @@ app.use(express.static("../client/dist"));
 // API Routes
 /////
 
-//API for retrieving a word.
 app.get("/api/game/new", handleNewGame);
-///
-//API
-///
+app.post("/api/game/:gameId/guess", handleGameGuess);
 
 /////
 // Client Routes
