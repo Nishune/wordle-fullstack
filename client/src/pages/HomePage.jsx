@@ -1,40 +1,27 @@
 import React, { useState } from "react";
 import { Typography, Box, Button, Paper, Grid, TextField } from "@mui/material";
-
+import GameSettings from "../components/GameSettings";
 function HomePage() {
-  const [wordLength, setWordLength] = useState(5);
+  const [gameSettings, SetGameSettings] = useState({
+    wordLength: 5,
+    uniqueLetters: false,
+  });
+
+  const startGame = () => {
+    console.log("Starting game with settings:", gameSettings);
+  };
   return (
-    <Box>
-      <Paper
-        elevation={2}
-        sx={{
-          p: 4,
-          textAlign: "center",
-          backgroundImage: "linear-gradient(to bottom right, #f5f5f5, #e0e0e0)",
-          borderRadius: 2,
-        }}
-      >
-        <Typography
-          variant="h2"
-          component="h1"
-          sx={{ mb: 4, color: "#2e7d32" }}
-        >
-          Wordle Game!
-        </Typography>
-        <Typography variant="h5" sx={{ mb: 4 }}>
-          Test your knowledge of words!
-        </Typography>
+    <Box sc={{ py: 4 }}>
+      <Typography variant="h3" component={"h1"} gutterBottom align="center">
+        Wordle Game
+      </Typography>
 
-        {/* GAME SETTINGS */}
-
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            label="Number of characters"
-            type="number"
-            value={wordLength}
-            onChange={(e) => setWordLength(Number(e.target.value))}
-          />
-        </Box>
+      <Paper elevation={3} sx={{ p: 3, mb: 4, maxWidth: 500, max: "auto" }}>
+        <GameSettings
+          settings={gameSettings}
+          onsettingChange={SetGameSettings}
+          onStartGame={startGame}
+        />
       </Paper>
     </Box>
   );
