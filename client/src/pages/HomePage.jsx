@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Typography, Box, Button, Paper, Grid, TextField } from "@mui/material";
+import { Typography, Box, Paper } from "@mui/material";
 import GameSettings from "../components/GameSettings";
+
 function HomePage() {
-  const [gameSettings, SetGameSettings] = useState({
+  const [gameSettings, setGameSettings] = useState({
     wordLength: 5,
     uniqueLetters: false,
   });
@@ -11,15 +12,15 @@ function HomePage() {
     console.log("Starting game with settings:", gameSettings);
   };
   return (
-    <Box sc={{ py: 4 }}>
+    <Box sx={{ py: 4 }}>
       <Typography variant="h3" component={"h1"} gutterBottom align="center">
         Wordle Game
       </Typography>
 
-      <Paper elevation={3} sx={{ p: 3, mb: 4, maxWidth: 500, max: "auto" }}>
+      <Paper elevation={3} sx={{ p: 3, mt: 4, maxWidth: 500, mx: "auto" }}>
         <GameSettings
           settings={gameSettings}
-          onsettingChange={SetGameSettings}
+          onSettingChange={setGameSettings}
           onStartGame={startGame}
         />
       </Paper>
