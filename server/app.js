@@ -5,7 +5,6 @@ import handleGameGuess from "./utils/gameGuess.js";
 
 const app = express();
 
-const activeGames = new Map();
 /////
 // Middleware
 /////
