@@ -29,9 +29,9 @@ export const MisplacedTile = styled(BaseTile)({
 });
 
 export const IncorrectTile = styled(BaseTile)({
-  backgroundColor: "#616161",
+  backgroundColor: "#f6330a",
   color: "white",
-  border: "2px solid #616161",
+  border: "2px solid #f6330a",
 });
 
 export const EmptyTile = styled(BaseTile, {
