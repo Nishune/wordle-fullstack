@@ -1,25 +1,26 @@
-import "./App.css";
 import React from "react";
-import Navbar from "./components/Navbar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
-import { Container, CssBaseline, ThemeProvider } from "@mui/material";
-import theme from "./theme";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navigation from "./components/common/Navbar";
+import "./App.css";
+import theme from "./theme.js";
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
-        <Navbar />
-        <Container maxWidth="lg" sx={{ mt: 4 }}>
+      <BrowserRouter>
+        <div className="app">
+          <Navigation />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="*" element={<HomePage />} />
           </Routes>
-        </Container>
-      </Router>
+        </div>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

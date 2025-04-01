@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Typography, Box, Paper, CircularProgress, Alert } from "@mui/material";
-import GameSettings from "../components/GameSettings";
-import GameBoard from "../components/GameBoard";
-
+import GameBoard from "../components/game/GameBoard";
+import GameSettings from "../components/game/GameSettings";
+import ErrorMessage from "../components/common/ErrorMessage";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 function HomePage() {
   const [gameSettings, setGameSettings] = useState({
     wordLength: 5,
@@ -34,7 +34,7 @@ function HomePage() {
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(
-          errorData.error || "Could not start the game at this time.."
+          errorData.error || "Could not start the game at this time."
         );
       }
       const data = await response.json();
@@ -49,7 +49,7 @@ function HomePage() {
         message: "New game started! Make a guess..",
       });
 
-      console.log("Game started with ID:", data.gameId);
+      console.log("Game Started with ID:", data.gameId);
     } catch (error) {
       console.error("Error starting game:", error);
       setError(error.message);
@@ -89,9 +89,9 @@ function HomePage() {
         isGameOver: data.isGameOver || false,
         word: data.word || null,
         message: data.isCorrect
-          ? `Congratulations! You guessed the word ${data.word}`
+          ? `Grats! you guessed the word ${data.word}`
           : data.isGameOver
-          ? `Game over! The word was: ${data.word}`
+          ? `Game over! Correct word was ${data.word}`
           : `Guess ${data.guessCount} of 6`,
       }));
     } catch (error) {
@@ -116,24 +116,13 @@ function HomePage() {
   };
 
   return (
-    <Box sx={{ py: 4 }}>
-      <Typography variant="h3" component="h1" gutterBottom align="center">
-        Wordle Game
-      </Typography>
+    <div className="home-page">
+      <h1 className="game-title">Wordle Game</h1>
 
-      {error && (
-        <Alert severity="error" sx={{ mv: 2 }}>
-          {error}
-        </Alert>
-      )}
+      {error && <ErrorMessage message={error} />}
 
-      {loading && (
-        <Box display="flex" justifyContent="center" my={2}>
-          <CircularProgress />
-        </Box>
-      )}
-
-      <Paper elevation={3} sx={{ p: 3, mt: 4, maxWidth: 600, mx: "auto" }}>
+      {loading && <LoadingSpinner />}
+      <div className="game-container">
         {!gameState.isActive ? (
           <GameSettings
             settings={gameSettings}
@@ -150,8 +139,8 @@ function HomePage() {
             onResetGame={resetGame}
           />
         )}
-      </Paper>
-    </Box>
+      </div>
+    </div>
   );
 }
 export default HomePage;
