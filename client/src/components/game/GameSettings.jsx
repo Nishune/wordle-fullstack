@@ -1,4 +1,18 @@
 import React from "react";
+import {
+  Box,
+  Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormControlLabel,
+  Checkbox,
+  Button,
+  Paper,
+  FormGroup,
+} from "@mui/material";
+import { PlayArrow } from "@mui/icons-material";
 
 function GameSettings({ settings, onSettingChange, onStartGame }) {
   const handleWordLengthChange = (event) => {
@@ -16,44 +30,77 @@ function GameSettings({ settings, onSettingChange, onStartGame }) {
   };
 
   return (
-    <div className="game-settings">
-      <h2 className="settings-title">Game Settings</h2>
+    <Paper
+      elevation={3}
+      sx={{
+        padding: 3,
+        borderRadius: 2,
+        maxWidth: 400,
+        margin: "0 auto",
+        backgroundColor: "background.paper",
+      }}
+    >
+      <Typography
+        variant="h5"
+        component="h2"
+        gutterBottom
+        sx={{
+          fontWeight: "bold",
+          textAlign: "center",
+          color: "primary.main",
+        }}
+      >
+        Game Settings
+      </Typography>
 
-      <div className="settings-form">
-        <div className="form-group">
-          <label htmlFor="word-length" className="select-label">
-            Word Length
-          </label>
-          <select
+      <Box sx={{ mt: 3 }}>
+        <FormControl fullWidth sx={{ mb: 3 }}>
+          <InputLabel id="word-length-label">Word Length</InputLabel>
+          <Select
+            labelId="word-length-label"
             id="word-length"
             value={settings.wordLength}
+            label="Word Length"
             onChange={handleWordLengthChange}
-            className="select-input"
           >
-            <option value={4}>4 letters</option>
-            <option value={5}>5 letters</option>
-            <option value={6}>6 letters</option>
-            <option value={7}>7 letters</option>
-          </select>
-        </div>
+            <MenuItem value={4}>4 letters</MenuItem>
+            <MenuItem value={5}>5 letters</MenuItem>
+            <MenuItem value={6}>6 letters</MenuItem>
+            <MenuItem value={7}>7 letters</MenuItem>
+          </Select>
+        </FormControl>
 
-        <div className="form-group checkbox-group">
-          <label className="checkbox-label">
-            <input
-              type="checkbox"
-              checked={settings.uniqueLetters}
-              onChange={handleUniqueLettersChange}
-              className="checkbox-input"
-            />
-            <span>Only unique letters</span>
-          </label>
-        </div>
+        <FormGroup sx={{ mb: 3 }}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={settings.uniqueLetters}
+                onChange={handleUniqueLettersChange}
+                color="primary"
+              />
+            }
+            label="Only unique letters"
+          />
+        </FormGroup>
 
-        <button className="start-button" onClick={onStartGame}>
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          fullWidth
+          onClick={onStartGame}
+          startIcon={<PlayArrow />}
+          sx={{
+            py: 1.5,
+            textTransform: "none",
+            fontWeight: "bold",
+            fontSize: "1rem",
+          }}
+        >
           Start Game
-        </button>
-      </div>
-    </div>
+        </Button>
+      </Box>
+    </Paper>
   );
 }
 

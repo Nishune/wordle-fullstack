@@ -6,14 +6,15 @@ function Navigation() {
   const location = useLocation();
 
   return (
-    <AppBar position="static" color="primary">
+    <AppBar position="static" color="secondary">
       <Toolbar>
-        <Box sx={{ display: "flex", gap: 2 }}>
+        <Box sx={{ display: "flex", gap: 2, marginLeft: "auto" }}>
           <Button
             component={RouterLink}
             to="/"
             color="inherit"
             sx={{
+              fontSize: "large",
               fontWeight: location.pathname === "/" ? "bold" : "normal",
               borderBottom:
                 location.pathname === "/" ? "2px solid white" : "none",
@@ -26,6 +27,7 @@ function Navigation() {
             to="/about"
             color="inherit"
             sx={{
+              fontSize: "large",
               fontWeight: location.pathname === "/about" ? "bold" : "normal",
               borderBottom:
                 location.pathname === "/about" ? "2px solid white" : "none",
