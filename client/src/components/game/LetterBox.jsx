@@ -1,20 +1,24 @@
 import React from "react";
-
+import {
+  CorrectTile,
+  MisplacedTile,
+  IncorrectTile,
+  EmptyTile,
+} from "../../styles/LetterBoxStyles";
 function LetterBox({ letter, result }) {
-  const getLetterClass = (result) => {
+  const renderTile = () => {
     switch (result) {
       case "correct":
-        return "letter-box--correct";
+        return <CorrectTile>{letter}</CorrectTile>;
       case "misplaced":
-        return "letter-box--misplaced";
+        return <MisplacedTile>{letter}</MisplacedTile>;
       case "incorrect":
-        return "letter-box--incorrect";
+        return <IncorrectTile>{letter}</IncorrectTile>;
       case "empty":
-        return "letter-box-empty";
+        return <EmptyTile hasLetter={!!letter}>{letter}</EmptyTile>;
     }
   };
-
-  return <div className={`letter-box ${getLetterClass(result)}`}>{letter}</div>;
+  return renderTile();
 }
 
 export default LetterBox;

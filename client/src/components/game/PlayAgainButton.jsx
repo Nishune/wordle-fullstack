@@ -1,12 +1,18 @@
 import React from "react";
+import { ResetContainer, ResetButton } from "../../styles/ButtonStyles";
+import { Refresh } from "@mui/icons-material";
 
 function PlayAgainButton({ onResetGame }) {
   return (
-    <div className="reset-container">
-      <button onClick={onResetGame} className="reset-button">
-        Play Again
-      </button>
-    </div>
+    <ResetContainer>
+      <ResetButton
+        variant="contained"
+        onClick={onResetGame}
+        startIcon={<Refresh />}
+      >
+        Play Again!
+      </ResetButton>
+    </ResetContainer>
   );
 }
 

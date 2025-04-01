@@ -1,9 +1,11 @@
 import React from "react";
+import { Box, Paper, Container, Typography } from "@mui/material";
 import GuessRow from "./GuessRow";
 import EmptyRow from "./EmptyRow";
 import GuessInput from "./GuessInput";
 import GameMessage from "./GameMessage";
 import PlayAgainButton from "./PlayAgainButton";
+
 function GameBoard({
   wordLength,
   guesses,
@@ -13,10 +15,34 @@ function GameBoard({
   onResetGame,
 }) {
   return (
-    <div className="game-board">
+    <Paper
+      elevation={3}
+      sx={{
+        padding: 4,
+        borderRadius: 2,
+        maxWidth: 600,
+        width: "100%",
+        margin: "0 auto",
+        backgroundColor: "background.paper",
+        border: "1px solid rgba(255, 152, 0, 0.2)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 3,
+      }}
+    >
       <GameMessage message={message} />
 
-      <div className="board-container">
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 2,
+          mb: 2,
+        }}
+      >
         {guesses.map((guess, index) => (
           <GuessRow key={index} feedback={guess.feedback} />
         ))}
@@ -28,18 +54,20 @@ function GameBoard({
             <EmptyRow key={`empty-${index}`} length={wordLength} />
           )
         )}
-      </div>
+      </Box>
 
-      {!isGameOver ? (
-        <GuessInput
-          wordLength={wordLength}
-          onMakeGuess={onMakeGuess}
-          disabled={isGameOver}
-        />
-      ) : (
-        <PlayAgainButton onResetGame={onResetGame} />
-      )}
-    </div>
+      <Box sx={{ width: "100%", mt: 2 }}>
+        {!isGameOver ? (
+          <GuessInput
+            wordLength={wordLength}
+            onMakeGuess={onMakeGuess}
+            disabled={isGameOver}
+          />
+        ) : (
+          <PlayAgainButton onResetGame={onResetGame} />
+        )}
+      </Box>
+    </Paper>
   );
 }
 

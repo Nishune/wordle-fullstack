@@ -1,18 +1,21 @@
+// src/components/game/GameSettings.jsx
 import React from "react";
 import {
-  Box,
-  Typography,
-  FormControl,
   InputLabel,
   Select,
   MenuItem,
   FormControlLabel,
   Checkbox,
-  Button,
-  Paper,
   FormGroup,
 } from "@mui/material";
 import { PlayArrow } from "@mui/icons-material";
+import {
+  SettingsContainer,
+  SettingsTitle,
+  FormContainer,
+  WordLengthSelect,
+  StartGameButton,
+} from "../../styles/GameSettingsStyle";
 
 function GameSettings({ settings, onSettingChange, onStartGame }) {
   const handleWordLengthChange = (event) => {
@@ -30,31 +33,13 @@ function GameSettings({ settings, onSettingChange, onStartGame }) {
   };
 
   return (
-    <Paper
-      elevation={3}
-      sx={{
-        padding: 3,
-        borderRadius: 2,
-        maxWidth: 400,
-        margin: "0 auto",
-        backgroundColor: "background.paper",
-      }}
-    >
-      <Typography
-        variant="h5"
-        component="h2"
-        gutterBottom
-        sx={{
-          fontWeight: "bold",
-          textAlign: "center",
-          color: "primary.main",
-        }}
-      >
+    <SettingsContainer elevation={3}>
+      <SettingsTitle variant="h5" component="h2" gutterBottom>
         Game Settings
-      </Typography>
+      </SettingsTitle>
 
-      <Box sx={{ mt: 3 }}>
-        <FormControl fullWidth sx={{ mb: 3 }}>
+      <FormContainer>
+        <WordLengthSelect>
           <InputLabel id="word-length-label">Word Length</InputLabel>
           <Select
             labelId="word-length-label"
@@ -68,7 +53,7 @@ function GameSettings({ settings, onSettingChange, onStartGame }) {
             <MenuItem value={6}>6 letters</MenuItem>
             <MenuItem value={7}>7 letters</MenuItem>
           </Select>
-        </FormControl>
+        </WordLengthSelect>
 
         <FormGroup sx={{ mb: 3 }}>
           <FormControlLabel
@@ -83,24 +68,18 @@ function GameSettings({ settings, onSettingChange, onStartGame }) {
           />
         </FormGroup>
 
-        <Button
+        <StartGameButton
           variant="contained"
           color="primary"
           size="large"
           fullWidth
           onClick={onStartGame}
           startIcon={<PlayArrow />}
-          sx={{
-            py: 1.5,
-            textTransform: "none",
-            fontWeight: "bold",
-            fontSize: "1rem",
-          }}
         >
           Start Game
-        </Button>
-      </Box>
-    </Paper>
+        </StartGameButton>
+      </FormContainer>
+    </SettingsContainer>
   );
 }
 
