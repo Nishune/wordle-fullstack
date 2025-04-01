@@ -5,7 +5,10 @@ import {
   IncorrectTile,
   EmptyTile,
 } from "../../styles/LetterBoxStyles";
+
+//These props (letter & result) comes from GuessRow component.
 function LetterBox({ letter, result }) {
+  //This function "decides" which tile should be displayed depending on result.
   const renderTile = () => {
     switch (result) {
       case "correct":
