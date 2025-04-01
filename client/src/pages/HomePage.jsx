@@ -3,6 +3,12 @@ import GameBoard from "../components/game/GameBoard";
 import GameSettings from "../components/game/GameSettings";
 import ErrorMessage from "../components/common/ErrorMessage";
 import LoadingSpinner from "../components/common/LoadingSpinner";
+import {
+  HomePageContainer,
+  GameTitle,
+  GameContainer,
+} from "../styles/HomePageStyles";
+
 function HomePage() {
   const [gameSettings, setGameSettings] = useState({
     wordLength: 5,
@@ -116,13 +122,14 @@ function HomePage() {
   };
 
   return (
-    <div className="home-page">
-      <h1 className="game-title">Wordle Game</h1>
+    <HomePageContainer>
+      <GameTitle variant="h1">Wordle Game</GameTitle>
 
       {error && <ErrorMessage message={error} />}
 
       {loading && <LoadingSpinner />}
-      <div className="game-container">
+
+      <GameContainer>
         {!gameState.isActive ? (
           <GameSettings
             settings={gameSettings}
@@ -139,8 +146,9 @@ function HomePage() {
             onResetGame={resetGame}
           />
         )}
-      </div>
-    </div>
+      </GameContainer>
+    </HomePageContainer>
   );
 }
+
 export default HomePage;

@@ -1,10 +1,14 @@
 import React from "react";
-import { Box, Paper, Container, Typography } from "@mui/material";
 import GuessRow from "./GuessRow";
 import EmptyRow from "./EmptyRow";
 import GuessInput from "./GuessInput";
 import GameMessage from "./GameMessage";
 import PlayAgainButton from "./PlayAgainButton";
+import {
+  GameBoardContainer,
+  BoardGrid,
+  InputContainer,
+} from "../../styles/GameBoardStyles";
 
 function GameBoard({
   wordLength,
@@ -15,34 +19,10 @@ function GameBoard({
   onResetGame,
 }) {
   return (
-    <Paper
-      elevation={3}
-      sx={{
-        padding: 4,
-        borderRadius: 2,
-        maxWidth: 600,
-        width: "100%",
-        margin: "0 auto",
-        backgroundColor: "background.paper",
-        border: "1px solid rgba(255, 152, 0, 0.2)",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 3,
-      }}
-    >
+    <GameBoardContainer elevation={3}>
       <GameMessage message={message} />
 
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 2,
-          mb: 2,
-        }}
-      >
+      <BoardGrid>
         {guesses.map((guess, index) => (
           <GuessRow key={index} feedback={guess.feedback} />
         ))}
@@ -54,9 +34,9 @@ function GameBoard({
             <EmptyRow key={`empty-${index}`} length={wordLength} />
           )
         )}
-      </Box>
+      </BoardGrid>
 
-      <Box sx={{ width: "100%", mt: 2 }}>
+      <InputContainer>
         {!isGameOver ? (
           <GuessInput
             wordLength={wordLength}
@@ -66,8 +46,8 @@ function GameBoard({
         ) : (
           <PlayAgainButton onResetGame={onResetGame} />
         )}
-      </Box>
-    </Paper>
+      </InputContainer>
+    </GameBoardContainer>
   );
 }
 

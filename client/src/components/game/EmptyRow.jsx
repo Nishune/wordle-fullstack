@@ -1,17 +1,10 @@
 import React from "react";
-import { Box } from "@mui/material";
 import LetterBox from "./LetterBox";
+import { EmptyRowContainer } from "../../styles/EmptyRowStyles";
 
 function EmptyRow({ length, currentGuess = "", isActive = false }) {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        gap: 1,
-        justifyContent: "center",
-        width: "100%",
-      }}
-    >
+    <EmptyRowContainer>
       {Array.from({ length }).map((_, index) => (
         <LetterBox
           key={index}
@@ -21,7 +14,7 @@ function EmptyRow({ length, currentGuess = "", isActive = false }) {
           result="empty"
         />
       ))}
-    </Box>
+    </EmptyRowContainer>
   );
 }
 

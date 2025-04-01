@@ -1,43 +1,36 @@
 import React from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
-import { AppBar, Toolbar, Button, Box } from "@mui/material";
+import {
+  NavBar,
+  NavToolbar,
+  NavLinksContainer,
+  NavButton,
+} from "../../styles/NavbarStyles";
 
 function Navigation() {
   const location = useLocation();
 
   return (
-    <AppBar position="static" color="secondary">
-      <Toolbar>
-        <Box sx={{ display: "flex", gap: 2, marginLeft: "auto" }}>
-          <Button
+    <NavBar position="static">
+      <NavToolbar>
+        <NavLinksContainer>
+          <NavButton
             component={RouterLink}
             to="/"
-            color="inherit"
-            sx={{
-              fontSize: "large",
-              fontWeight: location.pathname === "/" ? "bold" : "normal",
-              borderBottom:
-                location.pathname === "/" ? "2px solid white" : "none",
-            }}
+            isActive={location.pathname === "/"}
           >
             Home
-          </Button>
-          <Button
+          </NavButton>
+          <NavButton
             component={RouterLink}
             to="/about"
-            color="inherit"
-            sx={{
-              fontSize: "large",
-              fontWeight: location.pathname === "/about" ? "bold" : "normal",
-              borderBottom:
-                location.pathname === "/about" ? "2px solid white" : "none",
-            }}
+            isActive={location.pathname === "/about"}
           >
             About
-          </Button>
-        </Box>
-      </Toolbar>
-    </AppBar>
+          </NavButton>
+        </NavLinksContainer>
+      </NavToolbar>
+    </NavBar>
   );
 }
 

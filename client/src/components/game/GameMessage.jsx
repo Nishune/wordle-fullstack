@@ -1,23 +1,13 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { MessageContainer, MessageText } from "../../styles/GameMessageStyles";
 
 function GameMessage({ message }) {
   return (
-    <Box
-      sx={{
-        width: "100%",
-        textAlign: "center",
-        mb: 2,
-      }}
-    >
-      <Typography
-        variant="h6"
-        color="primary.main"
-        sx={{ fontWeight: "medium" }}
-      >
+    <MessageContainer>
+      <MessageText variant="h6" color="primary.main">
         {message}
-      </Typography>
-    </Box>
+      </MessageText>
+    </MessageContainer>
   );
 }
 

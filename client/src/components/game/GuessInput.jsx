@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { Box, TextField, Button, InputAdornment } from "@mui/material";
 import { Send } from "@mui/icons-material";
+import {
+  GuessInputForm,
+  GuessTextField,
+  GuessButton,
+} from "../../styles/GuessInputStyles";
 
 function GuessInput({ wordLength, onMakeGuess, disabled = false }) {
   const [currentGuess, setCurrentGuess] = useState("");
@@ -24,17 +28,8 @@ function GuessInput({ wordLength, onMakeGuess, disabled = false }) {
   };
 
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit}
-      sx={{
-        display: "flex",
-        width: "100%",
-        gap: 2,
-        alignItems: "center",
-      }}
-    >
-      <TextField
+    <GuessInputForm component="form" onSubmit={handleSubmit}>
+      <GuessTextField
         fullWidth
         value={currentGuess}
         onChange={handleInputChange}
@@ -44,30 +39,19 @@ function GuessInput({ wordLength, onMakeGuess, disabled = false }) {
         autoFocus
         inputProps={{
           maxLength: wordLength,
-          style: {
-            textTransform: "uppercase",
-            fontSize: "1.1rem",
-            letterSpacing: "0.1rem",
-          },
         }}
       />
 
-      <Button
+      <GuessButton
         type="submit"
         variant="contained"
         color="primary"
         disabled={currentGuess.length !== wordLength || disabled}
-        sx={{
-          py: 1.5,
-          px: 3,
-          textTransform: "none",
-          fontWeight: "bold",
-        }}
         endIcon={<Send />}
       >
         Guess
-      </Button>
-    </Box>
+      </GuessButton>
+    </GuessInputForm>
   );
 }
 

@@ -1,4 +1,3 @@
-// src/components/game/GameSettings.jsx
 import React from "react";
 import {
   InputLabel,

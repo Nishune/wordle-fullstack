@@ -1,4 +1,3 @@
-// LetterBoxStyles.js
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 
@@ -35,7 +34,9 @@ export const IncorrectTile = styled(BaseTile)({
   border: "2px solid #616161",
 });
 
-export const EmptyTile = styled(BaseTile)(({ theme, hasLetter }) => ({
+export const EmptyTile = styled(BaseTile, {
+  shouldForwardProp: (prop) => prop !== "hasLetter",
+})(({ theme, hasLetter }) => ({
   backgroundColor: "transparent",
   color: theme.palette.text.primary,
   border: "2px solid",
