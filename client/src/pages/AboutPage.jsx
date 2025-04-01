@@ -1,47 +1,45 @@
 import React from "react";
-import { Typography, Box, Paper, Divider } from "@mui/material";
 
 function AboutPage() {
   return (
-    <Box>
-      <Paper elevation={3} sx={{ p: 4, borderRadius: 2, mb: 4 }}>
-        <Typography
-          variant="h3"
-          component={"h1"}
-          sx={{ mb: 3, color: "primary.main" }}
-        >
-          Om Wordle Game
-        </Typography>
-
-        <Divider sx={{ mb: 3 }} />
-
-        <Typography variant="body1" component={"p"} sx={{ mb: 2 }}>
-          This is a fullstack project of the popular game Wordle.
-        </Typography>
-        <Typography
-          variant="h5"
-          sx={{
-            mb: 2,
-            mt: 4,
-            color: "secondary.main",
-          }}
-        >
-          Teknologier som används
-        </Typography>
-
-        <Box sx={{ mb: 3, pl: 2 }}>
-          <Typography variant="body1" sx={{ mb: 1 }}>
-            • <strong>Frontend:</strong> React, Material UI, React Router
-          </Typography>
-          <Typography variant="body1" sx={{ mb: 1 }}>
-            • <strong>Backend:</strong> Node.js, Express
-          </Typography>
-          <Typography variant="body1" sx={{ mb: 1 }}>
-            • <strong>Databas:</strong> För lagring av highscores
-          </Typography>
-        </Box>
-      </Paper>
-    </Box>
+    <div className="about-page">
+      <h1 className="about-title">About Wordle Game</h1>
+      <div className="about-content">
+        <p>
+          Welcome to the Wordle Game! This is a word-guessing game inspired by
+          the popular online game Wordle.
+        </p>
+        <h2>How to Play</h2>
+        <p>
+          In Wordle, you have six attempts to guess a hidden word. Each time you
+          make a guess, you get feedback:
+        </p>
+        <ul>
+          <li>
+            <span className="letter-example correct">Green</span> means the
+            letter is correct and in the right position
+          </li>
+          <li>
+            <span className="letter-example misplaced">Yellow</span> means the
+            letter is in the word but in the wrong position
+          </li>
+          <li>
+            <span className="letter-example incorrect">Gray</span> means the
+            letter is not in the word
+          </li>
+        </ul>
+        <h2>Game Settings</h2>
+        <p>
+          You can customize your game by choosing the word length (4-7 letters)
+          and whether the word must have unique letters (no repeated letters).
+        </p>
+        <h2>Have Fun!</h2>
+        <p>
+          The goal is to guess the word in as few attempts as possible. Good
+          luck!
+        </p>
+      </div>
+    </div>
   );
 }
 
