@@ -9,6 +9,7 @@ export const HomePageContainer = styled(Box)({
   width: "100%",
   maxWidth: "100%",
   minHeight: "100vh",
+  marginTop: "100px",
 });
 
 export const GameTitle = styled(Typography)(({ theme }) => ({
