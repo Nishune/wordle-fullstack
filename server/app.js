@@ -10,7 +10,7 @@ const app = express();
 /////
 app.use(express.json());
 
-// Servera statiska filer från dist-mappen (använder processens arbetskatalog)
+// Servera statiska filer från dist-mappen
 app.use(express.static("../client/dist"));
 
 /////
