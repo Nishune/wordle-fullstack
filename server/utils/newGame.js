@@ -1,25 +1,30 @@
 import { getWordList } from "./loadWordList.js";
 import selectWord from "./selectWord.js";
 
+//Using Map to store all active games in the memory on the server.
 export const activeGames = new Map();
 
 export default function handleNewGame(req, res) {
   console.log("New game request revievied with params:", req.query);
 
-  const wordList = getWordList();
+  const wordList = getWordList(); //Gets the wordlist from the server
+
+  //Checks if the wordlist is empty
   if (!wordList.length) {
     console.error("ERROR: wordlist is empty");
     return res.status(500).json({ error: "Wordlist is not loaded yet." });
   }
-
+  // Gets the settings the user chosen in the client from query params
   const length = parseInt(req.query.length) || 5;
-  const uniqueLetters = req.query.unique === "true";
+  //Converts the query param from string to boolean, default value is false
+  const uniqueLetters = JSON.parse(req.query.unique || "false");
 
   console.log(
     `Selecting a word with length ${length}, unique letters: ${uniqueLetters}`
   );
 
   try {
+    // Chose a word from the wordliust based on the critera
     const word = selectWord(wordList, length, uniqueLetters);
     if (!word) {
       console.error("No matching words found for criteria:", {
@@ -28,12 +33,12 @@ export default function handleNewGame(req, res) {
       });
       return res.status(404).json({ error: "No words matched the criteria" });
     }
-    //create game id and save game
+    //create a unique game-id with a combination of timestamp and random number in base36 format
     const gameId =
       Date.now().toString(36) + Math.random().toString(36).substring(2, 5);
 
-    //save game in our Map().
-
+    //The new game gets saved in our Map() with gameId as key.
+    //All gamedata gets stored in an objekt
     activeGames.set(gameId, {
       word: word.toUpperCase(),
       guesses: [],
@@ -49,8 +54,8 @@ export default function handleNewGame(req, res) {
     console.log(` Total active games: ${activeGames.size}`);
 
     res.json({
-      gameId,
-      wordLength: length,
+      gameId, // Games unique ID
+      wordLength: length, //The words length
     });
   } catch (error) {
     console.log("Error starting new game", error);
