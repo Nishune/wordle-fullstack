@@ -1,14 +1,10 @@
 import React from "react";
+import { Box, Paper } from "@mui/material";
 import GuessRow from "./GuessRow";
 import EmptyRow from "./EmptyRow";
 import GuessInput from "./GuessInput";
 import GameMessage from "./GameMessage";
 import PlayAgainButton from "./PlayAgainButton";
-import {
-  GameBoardContainer,
-  BoardGrid,
-  InputContainer,
-} from "../../styles/GameBoardStyles";
 
 function GameBoard({
   wordLength,
@@ -19,10 +15,38 @@ function GameBoard({
   onResetGame,
 }) {
   return (
-    <GameBoardContainer elevation={3}>
+    <Paper
+      elevation={3}
+      sx={(theme) => ({
+        padding: theme.spacing(4),
+        borderRadius: theme.spacing(2),
+        maxWidth: 600,
+        width: "100%",
+        margin: "0 auto",
+        backgroundColor: theme.palette.background.paper,
+        border: `1px solid ${
+          theme.palette.mode === "dark"
+            ? "rgba(255, 152, 0, 0.2)"
+            : "rgba(0, 0, 0, 0.1)"
+        }`,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: theme.spacing(3),
+      })}
+    >
       <GameMessage message={message} />
 
-      <BoardGrid>
+      <Box
+        sx={(theme) => ({
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: theme.spacing(2),
+          marginBottom: theme.spacing(2),
+        })}
+      >
         {guesses.map((guess, index) => (
           <GuessRow key={index} feedback={guess.feedback} />
         ))}
@@ -34,9 +58,14 @@ function GameBoard({
             <EmptyRow key={`empty-${index}`} length={wordLength} />
           )
         )}
-      </BoardGrid>
+      </Box>
 
-      <InputContainer>
+      <Box
+        sx={{
+          width: "100%",
+          marginTop: "16px",
+        }}
+      >
         {!isGameOver ? (
           <GuessInput
             wordLength={wordLength}
@@ -46,8 +75,8 @@ function GameBoard({
         ) : (
           <PlayAgainButton onResetGame={onResetGame} />
         )}
-      </InputContainer>
-    </GameBoardContainer>
+      </Box>
+    </Paper>
   );
 }
 

@@ -1,13 +1,9 @@
 import React, { useState } from "react";
+import { Box, Typography } from "@mui/material";
 import GameBoard from "../components/game/GameBoard";
 import GameSettings from "../components/game/GameSettings";
 import ErrorMessage from "../components/common/ErrorMessage";
 import LoadingSpinner from "../components/common/LoadingSpinner";
-import {
-  HomePageContainer,
-  GameTitle,
-  GameContainer,
-} from "../styles/HomePageStyles";
 
 function HomePage() {
   const [gameSettings, setGameSettings] = useState({
@@ -122,14 +118,43 @@ function HomePage() {
   };
 
   return (
-    <HomePageContainer>
-      <GameTitle variant="h1">Wordle Game</GameTitle>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "24px",
+        width: "100%",
+        maxWidth: "100%",
+        minHeight: "100vh",
+        marginTop: "100px",
+      }}
+    >
+      <Typography
+        variant="h1"
+        sx={(theme) => ({
+          fontSize: "2.5rem",
+          fontWeight: "bold",
+          marginBottom: "1.5rem",
+          color: theme.palette.primary.main,
+          textAlign: "center",
+        })}
+      >
+        Wordle Game
+      </Typography>
 
       {error && <ErrorMessage message={error} />}
 
       {loading && <LoadingSpinner />}
 
-      <GameContainer>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "1rem",
+        }}
+      >
         {!gameState.isActive ? (
           <GameSettings
             settings={gameSettings}
@@ -146,8 +171,8 @@ function HomePage() {
             onResetGame={resetGame}
           />
         )}
-      </GameContainer>
-    </HomePageContainer>
+      </Box>
+    </Box>
   );
 }
 
