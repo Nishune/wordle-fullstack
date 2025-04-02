@@ -15,7 +15,7 @@ function GuessRow({ feedback }) {
       })}
     >
       {feedback.map((item, index) => (
-        <LetterBox key={index} letter={item.letter} result={item.result} /> //letter item.letter sens the character to Letterbox, alkso sens in result to chose color/style.
+        <LetterBox key={index} letter={item.letter} result={item.result} /> //letter=item.letter sends the character to Letterbox, also sends in result to chose color/style.
       ))}
     </Box>
   );

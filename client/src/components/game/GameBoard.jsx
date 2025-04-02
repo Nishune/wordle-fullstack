@@ -7,12 +7,12 @@ import GameMessage from "./GameMessage";
 import PlayAgainButton from "./PlayAgainButton";
 
 function GameBoard({
-  wordLength,
-  guesses,
-  isGameOver,
-  message,
-  onMakeGuess,
-  onResetGame,
+  wordLength, //prop from gameState in homepage
+  guesses, //prop from gameState in homepage
+  isGameOver, //prop from gameState in homepage
+  message, //prop from gameState in homepage
+  onMakeGuess, //function in homepage
+  onResetGame, //function in homepage
 }) {
   return (
     <Paper
@@ -35,6 +35,7 @@ function GameBoard({
         gap: theme.spacing(3),
       })}
     >
+      {/* Shows the game message, like "guess the word" */}
       <GameMessage message={message} />
 
       <Box
@@ -47,11 +48,15 @@ function GameBoard({
           marginBottom: theme.spacing(2),
         })}
       >
+        {/* Loops through all guesses and creates a guessrow  */}
         {guesses.map((guess, index) => (
           <GuessRow key={index} feedback={guess.feedback} />
         ))}
 
+        {/* The active row, where the next guess will be displayed when the user subits a guess.  */}
         {guesses.length < 6 && <EmptyRow length={wordLength} isActive={true} />}
+
+        {/* Creates the remaining rows thats left under the active row */}
 
         {Array.from({ length: Math.max(0, 5 - guesses.length) }).map(
           (_, index) => (
@@ -68,9 +73,9 @@ function GameBoard({
       >
         {!isGameOver ? (
           <GuessInput
-            wordLength={wordLength}
-            onMakeGuess={onMakeGuess}
-            disabled={isGameOver}
+            wordLength={wordLength} // The length of the word controls the max length on the input
+            onMakeGuess={onMakeGuess} // Function which gets called when a guess is done
+            disabled={isGameOver} // disable input when game is over
           />
         ) : (
           <PlayAgainButton onResetGame={onResetGame} />
