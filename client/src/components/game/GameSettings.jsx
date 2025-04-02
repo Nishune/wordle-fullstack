@@ -14,16 +14,23 @@ import {
 } from "@mui/material";
 import { PlayArrow } from "@mui/icons-material";
 
+//Settings prop comes from homepage.jsx
+//onSettingChange prop comes from homepage.jsx
+//onStartGame prop comes from homepage.jsx
 function GameSettings({ settings, onSettingChange, onStartGame }) {
+  //Handles the word length dropdown-menu.
   const handleWordLengthChange = (event) => {
     onSettingChange({
+      //Keep all current settings, but adds the new wordlength, parseint to convert to number.
       ...settings,
       wordLength: parseInt(event.target.value),
     });
   };
 
+  //Handles the unique letters checkbox.
   const handleUniqueLettersChange = (event) => {
     onSettingChange({
+      //keeps all the previous settings, but adds true/false for unique letters.
       ...settings,
       uniqueLetters: event.target.checked,
     });
@@ -71,9 +78,9 @@ function GameSettings({ settings, onSettingChange, onStartGame }) {
           <Select
             labelId="word-length-label"
             id="word-length"
-            value={settings.wordLength}
+            value={settings.wordLength} //Comes from the gamesettings state in HomePage.jsx.
             label="Word Length"
-            onChange={handleWordLengthChange}
+            onChange={handleWordLengthChange} //Runs when the user choses a new number in the dropdown menu.
           >
             <MenuItem value={4}>4 letters</MenuItem>
             <MenuItem value={5}>5 letters</MenuItem>
@@ -88,8 +95,8 @@ function GameSettings({ settings, onSettingChange, onStartGame }) {
           <FormControlLabel
             control={
               <Checkbox
-                checked={settings.uniqueLetters}
-                onChange={handleUniqueLettersChange}
+                checked={settings.uniqueLetters} //State in Homepage.jsx
+                onChange={handleUniqueLettersChange} //function that runs when the checkbox is clicked.
                 color="primary"
               />
             }

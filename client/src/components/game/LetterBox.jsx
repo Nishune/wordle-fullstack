@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 
 //These props (letter & result) comes from GuessRow component.
 function LetterBox({ letter, result }) {
-  // Basstilen för alla tiles
+  // Added the base style for all the tiles.
   const baseTileStyle = {
     width: 50,
     height: 50,
@@ -17,7 +17,7 @@ function LetterBox({ letter, result }) {
     transition: "all 0.3s ease",
   };
 
-  // Specifika stilar baserade på resultatet
+  // Specific styles based on the results
   const getTileStyle = () => {
     switch (result) {
       case "correct":

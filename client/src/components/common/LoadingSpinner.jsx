@@ -14,7 +14,7 @@ function LoadingSpinner() {
     >
       <CircularProgress
         sx={{
-          color: "#1e3a8a",
+          color: "primary.main",
 
           "& .MuiCircularProgress-svg": {
             width: "60px",

@@ -9,8 +9,8 @@ function Navigation() {
     <AppBar
       position="static"
       sx={{
-        backgroundColor: "#000000", // Svart färg från ditt tema
-        boxShadow: "0 4px 8px rgba(255, 152, 0, 0.3)", // Orange skugga från ditt tema
+        backgroundColor: "#000000",
+        boxShadow: "0 4px 8px rgba(255, 152, 0, 0.3)",
       }}
     >
       <Toolbar sx={{ display: "flex", justifyContent: "flex-end" }}>
@@ -19,18 +19,18 @@ function Navigation() {
             component={RouterLink}
             to="/"
             sx={{
-              color: "#FFFFFF", // Vit text
+              color: "#FFFFFF",
               fontSize: "1.1rem",
               fontWeight: location.pathname === "/" ? 700 : 500,
               padding: "12px 16px",
-              borderRadius: 0, // Rektangulära knappar
+              borderRadius: 0,
               borderBottom:
                 location.pathname === "/"
                   ? "2px solid #FF9800"
                   : "2px solid transparent",
               transition: "all 0.3s",
               "&:hover": {
-                backgroundColor: "rgba(255, 152, 0, 0.1)", // Orange hover från ditt tema
+                backgroundColor: "rgba(255, 152, 0, 0.1)",
                 borderBottom: "2px solid #FF9800",
               },
               marginLeft: 1,
@@ -42,18 +42,18 @@ function Navigation() {
             component={RouterLink}
             to="/about"
             sx={{
-              color: "#FFFFFF", // Vit text
+              color: "#FFFFFF",
               fontSize: "1.1rem",
               fontWeight: location.pathname === "/about" ? 700 : 500,
               padding: "12px 16px",
-              borderRadius: 0, // Rektangulära knappar
+              borderRadius: 0,
               borderBottom:
                 location.pathname === "/about"
                   ? "2px solid #FF9800"
                   : "2px solid transparent",
               transition: "all 0.3s",
               "&:hover": {
-                backgroundColor: "rgba(255, 152, 0, 0.1)", // Orange hover från ditt tema
+                backgroundColor: "rgba(255, 152, 0, 0.1)",
                 borderBottom: "2px solid #FF9800",
               },
               marginLeft: 1,
