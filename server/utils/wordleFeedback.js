@@ -2,14 +2,20 @@ export default function wordleFeedback(guess, correctWord) {
   //Removes all blank spaces and converts to uppercase.
   guess = guess.replace(/\s/g, "").toUpperCase();
   correctWord = correctWord.replace(/\s/g, "").toUpperCase();
+
   //if guess is not equal to "secret word"-length, returns message.
   if (guess.length !== correctWord.length) {
     return `Din gissning måste innehålla ${correctWord.length} antal bokstäver.`;
   }
-  //if guess equals the "secret word", return message.
+
+  //if guess equals the "secret word", return array of correct letters
   if (guess === correctWord) {
-    return "Grattis! Du har gissat rätt ord!";
+    return Array.from(correctWord).map((letter) => ({
+      letter,
+      result: "correct",
+    }));
   }
+
   //Array that holds the result for each letter.
   const result = [];
   //splits the guess & correctword to an array with separate characters.
