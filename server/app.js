@@ -2,6 +2,8 @@ import express from "express";
 import path from "path";
 import handleNewGame from "./utils/newGame.js";
 import handleGameGuess from "./utils/gameGuess.js";
+import { getHighscores } from "./utils/highscores.js";
+import handleSaveHighscore from "./utils/saveHighscores.js";
 
 const app = express();
 
@@ -28,17 +30,17 @@ app.use("/static", express.static("./public"));
 
 app.get("/api/game/new", handleNewGame);
 app.post("/api/game/:gameId/guess", handleGameGuess);
-
+app.post("/api/game/:gameId/save-score", handleSaveHighscore);
 /////
 //Server-Side Rendered Routes
 /////
 
 app.get("/highscore", (req, res) => {
   try {
-    const highscores = [];
+    const highscores = getHighscores();
 
     res.render("highscore", {
-      title: "Wordle highscore",
+      title: "Wordle Highscore",
       highscores: highscores,
     });
   } catch (error) {
@@ -46,7 +48,6 @@ app.get("/highscore", (req, res) => {
     res.status(500).send("An error occurred while trying to get the highscore");
   }
 });
-
 /////
 // Client Routes
 /////

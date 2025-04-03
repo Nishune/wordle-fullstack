@@ -45,12 +45,15 @@
               <td><%= score.name %></td>
               <td>
                 <% const minutes = Math.floor(score.time / 60000); const seconds
-                = Math.floor((score.time % 60000) / 1000); %> <%= minutes %>:<%=
-                seconds.toString().padStart(2, '0') %>
+                = Math.floor((score.time % 60000) / 1000); const milliseconds =
+                score.time % 1000; const twoDigitMilliseconds =
+                Math.floor(milliseconds / 10); %> <%= minutes %>:<%=
+                seconds.toString().padStart(2, '0') %>.<%=
+                twoDigitMilliseconds.toString().padStart(2, '0') %>
               </td>
               <td><%= score.guesses.length %></td>
               <td><%= score.wordLength %></td>
-              <td><%= score.uniqueLetters ? 'Ja' : 'Nej' %></td>
+              <td><%= score.uniqueLetters ? 'Yes' : 'No' %></td>
               <td><%= new Date(score.date).toLocaleDateString('sv-SE') %></td>
             </tr>
             <% }); %>
