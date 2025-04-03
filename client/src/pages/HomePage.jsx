@@ -19,8 +19,10 @@ function HomePage() {
     wordLength: 0, // the length of the word for the current game.,
     guesses: [], // Array of all the guesses and feedback from backend.
     isGameOver: false, // If the game is over or not.
+    isWon: false,
     word: null, // The correct word, will only be shown once the game is over.
     message: "", // Message to show the user.
+    startTime: null,
   });
 
   const [loading, setLoading] = useState(false); // This state is used for the loading spinner when fetching the API.
@@ -52,7 +54,9 @@ function HomePage() {
         guesses: [], // Clear the list with guesses for a new game.
         isGameOver: false, //The game is not over yet.
         word: null, // The correct word is hidden.
-        message: "New game started! Make a guess..", // Message to user interface.
+        message: "New game started! Make a guess..", // Message to user interface.¨
+        isWon: false,
+        startTime: Date.now(),
       });
 
       console.log("Game Started with ID:", data.gameId);
@@ -97,6 +101,7 @@ function HomePage() {
         ...prevState, //Keeps the current state
         guesses: [...prevState.guesses, { guess, feedback: data.feedback }], // Adds the new guess and feedback from backend to the list
         isGameOver: data.isGameOver || false, //Update if the game is over
+        isWon: data.isCorrect || false,
         word: data.word || null, //If the game is over, show the correct word
         message: data.isCorrect // Adds a message depending on the outcome.
           ? `Grats! you guessed the word ${data.word}` //if guess is correct
@@ -121,6 +126,7 @@ function HomePage() {
       wordLength: 0,
       guesses: [],
       isGameOver: false,
+      isWon: false,
       word: null,
       message: "",
     });
@@ -179,9 +185,11 @@ function HomePage() {
             wordLength={gameState.wordLength} // Sends down the word length as props
             guesses={gameState.guesses} // Sends down the list with all the ealier guesses
             isGameOver={gameState.isGameOver} // sends down the currecnt game state
+            isWon={gameState.isWon}
             message={gameState.message} //Sends down the messages to be displayed
             onMakeGuess={makeGuess} // Sends down the function to make a guess
             onResetGame={resetGame} // sends down the function to reset the game.
+            gameId={gameState.gameId}
           />
         )}
       </Box>
