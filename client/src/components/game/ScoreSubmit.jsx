@@ -1,4 +1,4 @@
-import { Typography, Box, TextField, Button, Alert } from "@mui/material";
+import { Typography, Box, TextField, Button, Alert, Link } from "@mui/material";
 import React, { useState } from "react";
 
 function ScoreSubmit({ gameId, onResetGame }) {
@@ -51,8 +51,21 @@ function ScoreSubmit({ gameId, onResetGame }) {
           Your score has been saved to the highscore list!
         </Alert>
         <Typography variant="body1" sx={{ mb: 2 }}>
-          Check out the <a href="/highscore">highscore</a> to see where you
-          stand!
+          Check out the{" "}
+          <Link
+            href="/highscore"
+            sx={{
+              color: "warning.main",
+              fontWeight: "medium",
+              "&:hover": {
+                color: "warning.dark",
+                textDecoration: "underline",
+              },
+            }}
+          >
+            Highscore
+          </Link>{" "}
+          to see where you stand!
         </Typography>
         <Button
           variant="contained"
