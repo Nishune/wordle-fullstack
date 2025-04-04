@@ -1,4 +1,4 @@
-import wordleFeedback from "./wordleFeedback.js";
+import wordleFeedback from "../utils/wordleFeedback.js";
 import { activeGames } from "./newGame.js";
 
 export default function handleGameGuess(req, res) {

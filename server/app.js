@@ -1,9 +1,7 @@
 import express from "express";
 import path from "path";
-import handleNewGame from "./utils/newGame.js";
-import handleGameGuess from "./utils/gameGuess.js";
 import { getHighscores } from "./utils/highscores.js";
-import handleSaveHighscore from "./utils/saveHighscores.js";
+import gameRoutes from "./routes/gameRoutes.js";
 
 const app = express();
 
@@ -25,12 +23,10 @@ app.use(express.static("../client/dist"));
 app.use("/static", express.static("./public"));
 
 /////
-// API Routes
+// API: Game Routes.
 /////
 
-app.get("/api/game/new", handleNewGame);
-app.post("/api/game/:gameId/guess", handleGameGuess);
-app.post("/api/game/:gameId/save-score", handleSaveHighscore);
+app.use("/api/game", gameRoutes);
 /////
 //Server-Side Rendered Routes
 /////

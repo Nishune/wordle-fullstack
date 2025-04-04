@@ -1,5 +1,5 @@
 import { activeGames } from "./newGame.js";
-import { addHighscore } from "./highscores.js";
+import { addHighscore } from "../utils/highscores.js";
 
 export default function handleSaveHighscore(req, res) {
   const { gameId } = req.params;

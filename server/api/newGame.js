@@ -1,5 +1,5 @@
-import { getWordList } from "./loadWordList.js";
-import selectWord from "./selectWord.js";
+import { getWordList } from "../utils/loadWordList.js";
+import selectWord from "../utils/selectWord.js";
 
 //Using Map to store all active games in the memory on the server.
 export const activeGames = new Map();
