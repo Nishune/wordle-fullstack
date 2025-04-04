@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/highscore" class="active">Highscore</a>
+      </nav>
+    </header>
+
+    <div class="content-wrapper">
+      <h1>Wordle Highscore</h1>
+
+      <div class="paper">
+        <h2>Highscore!</h2>
+
+        <% if (highscores && highscores.length > 0) { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Place</th>
+              <th>Name</th>
+              <th>Time</th>
+              <th>Number of guesses</th>
+              <th>Word-length</th>
+              <th>Unique letters</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% highscores.forEach((score, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= score.name %></td>
+              <td>
+                <% const minutes = Math.floor(score.time / 60000); const seconds
+                = Math.floor((score.time % 60000) / 1000); const milliseconds =
+                score.time % 1000; const twoDigitMilliseconds =
+                Math.floor(milliseconds / 10); %> <%= minutes %>:<%=
+                seconds.toString().padStart(2, '0') %>.<%=
+                twoDigitMilliseconds.toString().padStart(2, '0') %>
+              </td>
+              <td><%= score.guesses.length %></td>
+              <td><%= score.wordLength %></td>
+              <td><%= score.uniqueLetters ? 'Yes' : 'No' %></td>
+              <td><%= new Date(score.date).toLocaleDateString('sv-SE') %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+        <% } else { %>
+        <div class="message">
+          <p>
+            No highscores registered yet.. Play the game to be the first on the
+            list!
+          </p>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

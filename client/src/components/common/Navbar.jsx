@@ -61,6 +61,27 @@ function Navigation() {
           >
             About
           </Button>
+
+          <Button
+            component="a"
+            href="/highscore"
+            sx={{
+              color: "#FFFFFF",
+              fontSize: "1.1rem",
+              fontWeight: 500,
+              padding: "12px, 16px",
+              borderRadius: 0,
+              borderBottom: "2px solid transparent",
+              transition: "all 0.3s",
+              "&:hover": {
+                backgroundColor: "rgba(255, 152, 0, 0.1",
+                borderBottom: "2px solid #FF9800",
+              },
+              marginLeft: 1,
+            }}
+          >
+            Highscore
+          </Button>
         </Box>
       </Toolbar>
     </AppBar>

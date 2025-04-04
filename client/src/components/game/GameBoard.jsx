@@ -5,6 +5,7 @@ import EmptyRow from "./EmptyRow";
 import GuessInput from "./GuessInput";
 import GameMessage from "./GameMessage";
 import PlayAgainButton from "./PlayAgainButton";
+import ScoreSubmit from "./ScoreSubmit";
 
 function GameBoard({
   wordLength, //prop from gameState in homepage
@@ -13,6 +14,8 @@ function GameBoard({
   message, //prop from gameState in homepage
   onMakeGuess, //function in homepage
   onResetGame, //function in homepage
+  gameId,
+  isWon,
 }) {
   return (
     <Paper
@@ -77,6 +80,8 @@ function GameBoard({
             onMakeGuess={onMakeGuess} // Function which gets called when a guess is done
             disabled={isGameOver} // disable input when game is over
           />
+        ) : isWon ? (
+          <ScoreSubmit gameId={gameId} onResetGame={onResetGame} />
         ) : (
           <PlayAgainButton onResetGame={onResetGame} />
         )}
