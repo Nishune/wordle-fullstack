@@ -1,4 +1,4 @@
-import fs from "fs/promises";
+import fs from 'fs/promises';
 
 //Wordlist which will contain all words from data file.
 let wordList = [];
@@ -7,14 +7,14 @@ let wordList = [];
 export async function loadWordList() {
   try {
     // Reads the file words_alpha.txt loacted in the data folder.
-    const data = await fs.readFile("./data/words_alpha.txt", "utf8");
+    const data = await fs.readFile('./data/words_alpha.txt', 'utf8');
     // splits the content of the file at each linebreak.
     //And saves each row as an element in the wordlist Array.
     wordList = data.split(/\r?\n/);
 
     console.log(`Laddade ${wordList.length} ord från ordlistan`);
   } catch (error) {
-    console.error("Error when reading wordlist:", error);
+    console.error('Error when reading wordlist:', error);
   }
 }
 

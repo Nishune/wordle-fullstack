@@ -7,11 +7,11 @@ export function addHighscore(scoreData) {
 
   highscores.push(scoreData);
 
-  highscores.sort((a, b) => a.time - b.time);
+  highscores.sort((a, b) => a.time -  b.time);
 
   return scoreData;
 }
 
 export function getHighscores() {
-  return highscores;
+  return  highscores;
 }

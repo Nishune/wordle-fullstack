@@ -1,5 +1,5 @@
-import express from "express";
-import { getHighscores } from "../utils/highscores.js";
+import express from 'express';
+import { getHighscores } from '../utils/highscores.js';
 
 const router = express.Router();
 
@@ -7,19 +7,19 @@ const router = express.Router();
 //Highscore Route
 /////
 
-router.get("/highscore", (req, res) => {
+router.get('/highscore', (req, res) => {
   try {
     const highscores = getHighscores();
 
-    res.render("highscore", {
-      title: "Wordle Highscore",
+    res.render('highscore', {
+      title: 'Wordle Highscore',
       highscores: highscores,
     });
   } catch (error) {
-    console.log("Error loading highscores", error);
+    console.log('Error loading highscores', error);
     res
       .status(500)
-      .send("An error occurred while trying to get the highscore list.");
+      .send('An error occurred while trying to get the highscore list.');
   }
 });
 
