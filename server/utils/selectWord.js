@@ -44,7 +44,7 @@ function selectWord(wordList, desiredLength, uniqueLettersOnly = false) {
   // Filter words so they match the users choices
   const filteredWords = wordList.filter((word) => {
     // Remove blank space and convert to lowercase
-    const cleanedWord = word.replace(/\s/g, "").toLowerCase();
+    const cleanedWord = word.replace(/\s/g, '').toLowerCase();
 
     // Check if the words length, matches the users chosen length.
     if (cleanedWord.length !== desiredLength) return false;

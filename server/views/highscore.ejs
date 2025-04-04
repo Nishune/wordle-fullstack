@@ -25,6 +25,8 @@
       <div class="paper">
         <h2>Highscore!</h2>
 
+        <%# Check to see if there are any highscores to show %>
+
         <% if (highscores && highscores.length > 0) { %>
         <table>
           <thead>
@@ -39,15 +41,25 @@
             </tr>
           </thead>
           <tbody>
+
+            <%# Loops through the highscores array and creates a row for each score %>
             <% highscores.forEach((score, index) => { %>
             <tr>
+              <%# shows placing index + 1 to start from 1 instead of zero %>
               <td><%= index + 1 %></td>
+              <%# players name %>
               <td><%= score.name %></td>
               <td>
-                <% const minutes = Math.floor(score.time / 60000); const seconds
-                = Math.floor((score.time % 60000) / 1000); const milliseconds =
+                <%# Counting to format the time from milli seconds to minutes, second, and hundredths seconds? (hundradelar) %>
+                <% const
+                minutes = Math.floor(score.time / 60000); const seconds =
+                Math.floor((score.time % 60000) / 1000); const milliseconds =
                 score.time % 1000; const twoDigitMilliseconds =
-                Math.floor(milliseconds / 10); %> <%= minutes %>:<%=
+                Math.floor(milliseconds / 10); %>
+
+                <%# Shows the formatted time %>
+
+                <%= minutes %>:<%=
                 seconds.toString().padStart(2, '0') %>.<%=
                 twoDigitMilliseconds.toString().padStart(2, '0') %>
               </td>
@@ -59,6 +71,9 @@
             <% }); %>
           </tbody>
         </table>
+
+       <%# Fallback if there are no highscores yet, then we show the message below %>
+
         <% } else { %>
         <div class="message">
           <p>

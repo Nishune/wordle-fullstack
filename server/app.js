@@ -1,10 +1,7 @@
 import express from "express";
 import path from "path";
-import handleNewGame from "./utils/newGame.js";
-import handleGameGuess from "./utils/gameGuess.js";
-import { getHighscores } from "./utils/highscores.js";
-import handleSaveHighscore from "./utils/saveHighscores.js";
-
+import gameRoutes from "./routes/gameRoutes.js";
+import viewRoutes from "./routes/viewRoutes.js";
 const app = express();
 
 /////
@@ -25,29 +22,14 @@ app.use(express.static("../client/dist"));
 app.use("/static", express.static("./public"));
 
 /////
-// API Routes
+// API: Game Routes.
 /////
 
-app.get("/api/game/new", handleNewGame);
-app.post("/api/game/:gameId/guess", handleGameGuess);
-app.post("/api/game/:gameId/save-score", handleSaveHighscore);
+app.use("/api/game", gameRoutes);
 /////
 //Server-Side Rendered Routes
 /////
-
-app.get("/highscore", (req, res) => {
-  try {
-    const highscores = getHighscores();
-
-    res.render("highscore", {
-      title: "Wordle Highscore",
-      highscores: highscores,
-    });
-  } catch (error) {
-    console.log("Error loading highscores", error);
-    res.status(500).send("An error occurred while trying to get the highscore");
-  }
-});
+app.use("/", viewRoutes);
 /////
 // Client Routes
 /////

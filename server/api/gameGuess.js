@@ -1,5 +1,5 @@
-import wordleFeedback from "./wordleFeedback.js";
-import { activeGames } from "./newGame.js";
+import wordleFeedback from '../utils/wordleFeedback.js';
+import { activeGames } from './newGame.js';
 
 export default function handleGameGuess(req, res) {
   const { gameId } = req.params; //Takes the gameId from the URL-params sent by the user.
@@ -12,7 +12,7 @@ export default function handleGameGuess(req, res) {
   //If the game does not exist, return 404
   if (!game) {
     console.error(`ERROR: Game ${gameId} not found in active games!`);
-    return res.status(404).json({ error: "Game not found" });
+    return res.status(404).json({ error: 'Game not found' });
   }
 
   console.log(`Found game ${gameId}`);
@@ -65,7 +65,7 @@ export default function handleGameGuess(req, res) {
 
   console.log(`Sending response to client:`, {
     ...response,
-    word: response.word ? response.word : "[HIDDEN]",
+    word: response.word ? response.word : '[HIDDEN]',
   });
 
   res.json(response);
