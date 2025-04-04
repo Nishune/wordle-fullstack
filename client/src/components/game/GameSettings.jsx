@@ -116,13 +116,14 @@ function GameSettings({ settings, onSettingChange, onStartGame }) {
             textTransform: "none",
             fontWeight: "bold",
             fontSize: "1rem",
-            boxShadow: `0 4px 8px ${
-              theme.palette.mode === "dark"
-                ? "rgba(255, 152, 0, 0.3)"
-                : "rgba(0, 0, 0, 0.2)"
-            }`,
+            boxShadow: "none",
             "&:hover": {
               backgroundColor: theme.palette.primary.dark,
+              boxShadow: `0 4px 8px ${
+                theme.palette.mode === "dark"
+                  ? "rgba(255, 152, 0, 0.3)"
+                  : "rgba(0, 0, 0, 0.2)"
+              }`,
             },
           })}
         >

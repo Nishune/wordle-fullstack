@@ -15,7 +15,7 @@ function PlayAgainButton({ onResetGame }) {
     >
       <Button
         variant="contained"
-        onClick={onResetGame} //Runs the function from HomePage.jsx and resets the game.
+        onClick={onResetGame}
         startIcon={<Refresh />}
         sx={(theme) => ({
           padding: "12px 24px",
@@ -25,13 +25,14 @@ function PlayAgainButton({ onResetGame }) {
           backgroundColor: theme.palette.primary.main,
           color: theme.palette.primary.contrastText,
           borderRadius: "8px",
-          boxShadow: `0 4px 8px ${
-            theme.palette.mode === "dark"
-              ? "rgba(255, 152, 0, 0.3)"
-              : "rgba(0, 0, 0, 0.2)"
-          }`,
+          boxShadow: "none",
           "&:hover": {
             backgroundColor: theme.palette.primary.dark,
+            boxShadow: `0 4px 8px ${
+              theme.palette.mode === "dark"
+                ? "rgba(255, 152, 0, 0.3)"
+                : "rgba(0, 0, 0, 0.2)"
+            }`,
           },
         })}
       >
