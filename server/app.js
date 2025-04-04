@@ -1,8 +1,7 @@
 import express from "express";
 import path from "path";
-import { getHighscores } from "./utils/highscores.js";
 import gameRoutes from "./routes/gameRoutes.js";
-
+import viewRoutes from "./routes/viewRoutes.js";
 const app = express();
 
 /////
@@ -30,20 +29,7 @@ app.use("/api/game", gameRoutes);
 /////
 //Server-Side Rendered Routes
 /////
-
-app.get("/highscore", (req, res) => {
-  try {
-    const highscores = getHighscores();
-
-    res.render("highscore", {
-      title: "Wordle Highscore",
-      highscores: highscores,
-    });
-  } catch (error) {
-    console.log("Error loading highscores", error);
-    res.status(500).send("An error occurred while trying to get the highscore");
-  }
-});
+app.use("/", viewRoutes);
 /////
 // Client Routes
 /////
