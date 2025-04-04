@@ -71,7 +71,22 @@ function ScoreSubmit({ gameId, onResetGame }) {
           variant="contained"
           color="primary"
           onClick={onResetGame}
-          sx={{ mt: 1 }}
+          sx={(theme) => ({
+            padding: `${theme.spacing(1.5)} 0`,
+            textTransform: "none",
+            fontWeight: "bold",
+            fontSize: "1rem",
+            boxShadow: `0 4px 8px ${
+              theme.palette.mode === "dark"
+                ? "rgba(255, 152, 0, 0.3)"
+                : "rgba(0, 0, 0, 0.2)"
+            }`,
+            "&:hover": {
+              backgroundColor: theme.palette.primary.dark,
+            },
+            width: "60%",
+            mt: 1,
+          })}
         >
           Play again
         </Button>
@@ -82,7 +97,7 @@ function ScoreSubmit({ gameId, onResetGame }) {
   return (
     <Box sx={{ mt: 2 }}>
       <Typography variant="h6" sx={{ mb: 2 }}>
-        Sumbit Your Score
+        Submit Your Score
       </Typography>
       {/* Display error messages if there si any */}
       {error && (
@@ -109,19 +124,51 @@ function ScoreSubmit({ gameId, onResetGame }) {
             variant="contained"
             color="primary"
             disabled={isSubmitting}
-            sx={{ flex: 1 }}
+            sx={(theme) => ({
+              flex: 1,
+              padding: `${theme.spacing(1.5)} 0`,
+              textTransform: "none",
+              fontWeight: "bold",
+              fontSize: "1rem",
+              boxShadow: "none",
+              "&:hover": {
+                backgroundColor: theme.palette.primary.dark,
+                boxShadow: `0 4px 8px ${
+                  theme.palette.mode === "dark"
+                    ? "rgba(255, 152, 0, 0.3)"
+                    : "rgba(0, 0, 0, 0.2)"
+                }`, // Lägg till skuggan endast vid hover
+              },
+            })}
           >
             {isSubmitting ? "Submitting..." : "Submit Score"}
           </Button>
           {/* Button to skip saving score and play another game */}
           <Button
             variant="outlined"
-            color="secondary"
+            color="primary"
             onClick={onResetGame}
             disabled={isSubmitting}
-            sx={{ flex: 1 }}
+            sx={(theme) => ({
+              flex: 1,
+              padding: `${theme.spacing(1.5)} 0`,
+              textTransform: "none",
+              fontWeight: "bold",
+              fontSize: "1rem",
+              border: `1px solid ${theme.palette.primary.main}`,
+              boxShadow: "none",
+              "&:hover": {
+                backgroundColor: theme.palette.primary.main,
+                color: theme.palette.primary.contrastText,
+                boxShadow: `0 4px 8px ${
+                  theme.palette.mode === "dark"
+                    ? "rgba(255, 152, 0, 0.3)"
+                    : "rgba(0, 0, 0, 0.2)"
+                }`,
+              },
+            })}
           >
-            Skip & Play Again.
+            Skip & Play Again
           </Button>
         </Box>
       </form>
