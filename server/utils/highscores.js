@@ -1,17 +1,27 @@
-const highscores = [];
+import Highscore from "../models/Highscore.js";
 
-export function addHighscore(scoreData) {
-  if (!scoreData.date) {
-    scoreData.date = new Date();
+export async function addHighscore(scoreData) {
+  try {
+    if (!scoreData.date) {
+      scoreData.date = new Date();
+    }
+
+    const newHighscore = new Highscore(scoreData);
+    await newHighscore.save();
+
+    return newHighscore;
+  } catch (error) {
+    console.error("Error saving highscore:", error);
+    throw error;
   }
-
-  highscores.push(scoreData);
-
-  highscores.sort((a, b) => a.time -  b.time);
-
-  return scoreData;
 }
 
-export function getHighscores() {
-  return  highscores;
+export async function getHighscores() {
+  try {
+    const highscores = await Highscore.find().sort({ time: 1 });
+    return highscores;
+  } catch (error) {
+    console.error("Error getting highscores:", error);
+    throw error;
+  }
 }

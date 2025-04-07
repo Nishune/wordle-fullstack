@@ -63,7 +63,7 @@
                 seconds.toString().padStart(2, '0') %>.<%=
                 twoDigitMilliseconds.toString().padStart(2, '0') %>
               </td>
-              <td><%= score.guesses.length %></td>
+              <td><%= score.guessCount %></td>
               <td><%= score.wordLength %></td>
               <td><%= score.uniqueLetters ? 'Yes' : 'No' %></td>
               <td><%= new Date(score.date).toLocaleDateString('sv-SE') %></td>
