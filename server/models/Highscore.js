@@ -9,8 +9,8 @@ const highscoreSchema = new mongoose.Schema({
   date: { type: Date, required: true },
 });
 
-highscoreSchema.index({ time: 1 });
-
+//Creates the model Highscore based on the schema above, this modell is used to intergrate
+//with the highscores-collection in mongodb.
 const Highscore = mongoose.model("Highscore", highscoreSchema);
 
 export default Highscore;
