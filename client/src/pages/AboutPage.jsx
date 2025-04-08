@@ -109,7 +109,7 @@ function AboutPage() {
 
         <Typography variant="body1" component="p" sx={{ mb: 2 }}>
           <strong>Highscore:</strong> Game results are stored in a database
-          (MongoDB) and displayed on a server-side rendered page.
+          (MongoDB) and displayed on a server-side rendered page which uses EJS.
         </Typography>
       </Paper>
     </Container>
