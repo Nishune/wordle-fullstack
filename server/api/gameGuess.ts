@@ -2,7 +2,7 @@ import wordleFeedback, { LetterFeedback } from "../utils/wordleFeedback.js";
 import { activeGames, Game } from "./newGame.js";
 import { Request, Response } from "express";
 
-export default function handleGameGuess(req: Request, res: Response) {
+export default function handleGameGuess(req: Request, res: Response): void {
   const { gameId } = req.params as { gameId: string }; //Takes the gameId from the URL-params sent by the user.
   const { guess } = req.body as { guess: string }; //Takes the guess from the request body
 
@@ -13,7 +13,8 @@ export default function handleGameGuess(req: Request, res: Response) {
   //If the game does not exist, return 404
   if (!game) {
     console.error(`ERROR: Game ${gameId} not found in active games!`);
-    return res.status(404).json({ error: "Game not found" });
+    res.status(404).json({ error: "Game not found" });
+    return;
   }
 
   console.log(`Found game ${gameId}`);
@@ -22,9 +23,10 @@ export default function handleGameGuess(req: Request, res: Response) {
 
   //Checks so the guess has the same length as the word, this is also checked in frontend. But i followed "dont trust the client / user"
   if (guess.length !== game.word.length) {
-    return res.status(400).json({
+    res.status(400).json({
       error: `Your guess must contain ${game.word.length} number of characters.`,
     });
+    return;
   }
 
   const isCorrect: boolean = guess.toUpperCase() === game.word; //Check is the guess is correct, and turns to uppercase.
@@ -41,13 +43,14 @@ export default function handleGameGuess(req: Request, res: Response) {
   if (isCorrect) {
     console.log(`Game ${gameId} was won in ${game.guesses.length} guesses`);
 
-    return res.json({
+    res.json({
       feedback,
       isCorrect: true,
       guessCount: game.guesses.length,
       word: game.word, // Show the correct word for the player
       isGameOver: true, // Switch isGameOver to true.
     });
+    return;
   }
 
   // Reponse object for not correct guesses
