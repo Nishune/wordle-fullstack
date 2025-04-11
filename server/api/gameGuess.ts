@@ -1,18 +1,27 @@
-import wordleFeedback from '../utils/wordleFeedback.js';
-import { activeGames } from './newGame.js';
+import wordleFeedback, { LetterFeedback } from "../utils/wordleFeedback.js";
+import { activeGames } from "./newGame.js";
+import { Request, Response } from "express";
 
-export default function handleGameGuess(req, res) {
-  const { gameId } = req.params; //Takes the gameId from the URL-params sent by the user.
-  const { guess } = req.body; //Takes the guess from the request body
+interface Game {
+  word: string;
+  guesses: {
+    guess: string;
+    feedback: LetterFeedback[];
+  }[];
+}
+
+export default function handleGameGuess(req: Request, res: Response) {
+  const { gameId } = req.params as { gameId: string }; //Takes the gameId from the URL-params sent by the user.
+  const { guess } = req.body as { guess: string }; //Takes the guess from the request body
 
   console.log(`GUESS REQUESTED recieved for game ${gameId}`);
   console.log(`Guess: ${guess}`);
 
-  const game = activeGames.get(gameId); //Gets the active game from the Map() in newGame.js
+  const game = activeGames.get(gameId) as Game | undefined; //Gets the active game from the Map() in newGame.js
   //If the game does not exist, return 404
   if (!game) {
     console.error(`ERROR: Game ${gameId} not found in active games!`);
-    return res.status(404).json({ error: 'Game not found' });
+    return res.status(404).json({ error: "Game not found" });
   }
 
   console.log(`Found game ${gameId}`);
@@ -26,14 +35,14 @@ export default function handleGameGuess(req, res) {
     });
   }
 
-  const isCorrect = guess.toUpperCase() === game.word; //Check is the guess is correct, and turns to uppercase.
+  const isCorrect: boolean = guess.toUpperCase() === game.word; //Check is the guess is correct, and turns to uppercase.
 
   const feedback = wordleFeedback(guess, game.word); //Use the wordleFeedback algoritm to generate feedback for the guess.
 
   // Savess the guess and its feedback in the games history
   game.guesses.push({
     guess: guess.toUpperCase(),
-    feedback,
+    feedback: feedback as LetterFeedback[],
   });
 
   // If the guess is correct
@@ -50,8 +59,14 @@ export default function handleGameGuess(req, res) {
   }
 
   // Reponse object for not correct guesses
-  const response = {
-    feedback,
+  const response: {
+    feedback: LetterFeedback[];
+    isCorrect: boolean;
+    guessCount: number;
+    word?: string;
+    isGameOver?: boolean;
+  } = {
+    feedback: feedback as LetterFeedback[],
     isCorrect,
     guessCount: game.guesses.length,
   };
@@ -65,7 +80,7 @@ export default function handleGameGuess(req, res) {
 
   console.log(`Sending response to client:`, {
     ...response,
-    word: response.word ? response.word : '[HIDDEN]',
+    word: response.word ? response.word : "[HIDDEN]",
   });
 
   res.json(response);

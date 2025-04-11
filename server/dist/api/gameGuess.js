@@ -1,5 +1,5 @@
-import wordleFeedback from '../utils/wordleFeedback.js';
-import { activeGames } from './newGame.js';
+import wordleFeedback from "../utils/wordleFeedback.js";
+import { activeGames } from "./newGame.js";
 export default function handleGameGuess(req, res) {
     const { gameId } = req.params; //Takes the gameId from the URL-params sent by the user.
     const { guess } = req.body; //Takes the guess from the request body
@@ -9,7 +9,7 @@ export default function handleGameGuess(req, res) {
     //If the game does not exist, return 404
     if (!game) {
         console.error(`ERROR: Game ${gameId} not found in active games!`);
-        return res.status(404).json({ error: 'Game not found' });
+        return res.status(404).json({ error: "Game not found" });
     }
     console.log(`Found game ${gameId}`);
     console.log(`Secret word: ${game.word} (only visible on server)`);
@@ -25,7 +25,7 @@ export default function handleGameGuess(req, res) {
     // Savess the guess and its feedback in the games history
     game.guesses.push({
         guess: guess.toUpperCase(),
-        feedback,
+        feedback: feedback,
     });
     // If the guess is correct
     if (isCorrect) {
@@ -40,7 +40,7 @@ export default function handleGameGuess(req, res) {
     }
     // Reponse object for not correct guesses
     const response = {
-        feedback,
+        feedback: feedback,
         isCorrect,
         guessCount: game.guesses.length,
     };
@@ -52,7 +52,7 @@ export default function handleGameGuess(req, res) {
     }
     console.log(`Sending response to client:`, {
         ...response,
-        word: response.word ? response.word : '[HIDDEN]',
+        word: response.word ? response.word : "[HIDDEN]",
     });
     res.json(response);
 }
