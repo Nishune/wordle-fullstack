@@ -1,6 +1,7 @@
 import { getWordList } from "../utils/loadWordList.js";
 import selectWord from "../utils/selectWord.js";
 import { Request, Response } from "express";
+import { LetterFeedback } from "../utils/wordleFeedback.js";
 
 interface GameSettings {
   wordLength: number;
@@ -11,7 +12,7 @@ export interface Game {
   word: string;
   guesses: {
     guess: string;
-    feedback?: unknown;
+    feedback: LetterFeedback[];
   }[];
   startTime: number;
   settings: GameSettings;

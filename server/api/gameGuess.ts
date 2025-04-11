@@ -1,14 +1,6 @@
 import wordleFeedback, { LetterFeedback } from "../utils/wordleFeedback.js";
-import { activeGames } from "./newGame.js";
+import { activeGames, Game } from "./newGame.js";
 import { Request, Response } from "express";
-
-interface Game {
-  word: string;
-  guesses: {
-    guess: string;
-    feedback: LetterFeedback[];
-  }[];
-}
 
 export default function handleGameGuess(req: Request, res: Response) {
   const { gameId } = req.params as { gameId: string }; //Takes the gameId from the URL-params sent by the user.

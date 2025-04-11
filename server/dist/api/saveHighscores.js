@@ -8,16 +8,16 @@ export default async function handleSaveHighscore(req, res) {
     //Checks if the game exists.
     if (!game) {
         console.log(`Error: Game ${gameId} not found in active games`);
-        return res.status(404).json({ error: "Game not found" });
+        res.status(404).json({ error: "Game not found" });
+        return;
     }
     const lastGuess = game.guesses[game.guesses.length - 1]; //Gets the last guess from the arary.
     const isWon = lastGuess && lastGuess.guess === game.word; // Checks if the game is won by comparing the last guess with the correct word.
     //an extra check so a player cant send in points for a non completed game
     if (!isWon) {
         console.log(`Error: Game ${gameId} was not won, cannot save highscore`);
-        return res
-            .status(400)
-            .json({ error: "Game is not completed successfully" });
+        res.status(400).json({ error: "Game is not completed successfully" });
+        return;
     }
     console.log(`Game ${gameId} was won, saving highscore`);
     const endTime = Date.now(); // Saves the current time
