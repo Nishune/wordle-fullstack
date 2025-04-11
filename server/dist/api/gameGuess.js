@@ -50,7 +50,10 @@ export default function handleGameGuess(req, res) {
         response.isGameOver = true; // sets isGameOver to true
         console.log(`Game ${gameId} was lost. Word was: ${game.word}`);
     }
-    console.log(`Sending response to client:`, Object.assign(Object.assign({}, response), { word: response.word ? response.word : '[HIDDEN]' }));
+    console.log(`Sending response to client:`, {
+        ...response,
+        word: response.word ? response.word : '[HIDDEN]',
+    });
     res.json(response);
 }
 //# sourceMappingURL=gameGuess.js.map

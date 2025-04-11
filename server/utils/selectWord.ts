@@ -1,4 +1,8 @@
-function selectWord(wordList, desiredLength, uniqueLettersOnly = false) {
+function selectWord(
+  wordList: string[],
+  desiredLength: number,
+  uniqueLettersOnly: boolean = false
+): string | null {
   // Check so that the worstlist is a array and contains words
   if (!Array.isArray(wordList) || wordList.length === 0) {
     return null;

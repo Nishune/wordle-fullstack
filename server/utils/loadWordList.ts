@@ -1,13 +1,14 @@
 import fs from "fs/promises";
 
 //Wordlist which will contain all words from data file.
-let wordList = [];
+let wordList: string[] = [];
 
 //Function to read in the words from the file.
-export async function loadWordList() {
+export async function loadWordList(): Promise<void> {
+  //Promise void means that is asyncronous, and wont return a value when its done.
   try {
     // Reads the file words_alpha.txt loacted in the data folder.
-    const data = await fs.readFile("./data/words_alpha.txt", "utf8");
+    const data: string = await fs.readFile("./data/words_alpha.txt", "utf8");
     // Splits the content of the file at each linebreak.
     // And saves each row as an element in the wordlist Array.
     wordList = data.split(/\r?\n/);
@@ -18,6 +19,6 @@ export async function loadWordList() {
   }
 }
 
-export function getWordList() {
+export function getWordList(): string[] {
   return wordList;
 }
