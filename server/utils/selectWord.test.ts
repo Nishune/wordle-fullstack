@@ -5,9 +5,6 @@ import { expect, describe, it, jest, afterEach } from "@jest/globals";
 //This makes it possible to determine which random word will be chosen.
 const mockMathRandom = jest.spyOn(Math, "random");
 
-// Creates a spy on console.log to avoid prints in the terminal during testing
-const mockConsoleLog = jest.spyOn(console, "log").mockImplementation(() => {});
-
 describe("Select word function", () => {
   //Reset all mocks after each test
   afterEach(() => {
