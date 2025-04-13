@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node dist/server.js",
+    "build": "tsc",
+    "dev": "nodemon --watch ./**/*.ts --exec \"npx tsc && node dist/server.js\"",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "keywords": [],
@@ -19,8 +20,15 @@
     "mongoose": "^8.13.2"
   },
   "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/jest": "^29.5.14",
+    "@types/mongoose": "^5.11.96",
+    "@types/node": "^22.14.0",
     "jest": "^29.7.0",
     "nodemon": "^3.1.9",
-    "prettier-plugin-ejs": "^1.0.3"
+    "prettier-plugin-ejs": "^1.0.3",
+    "ts-jest": "^29.3.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }

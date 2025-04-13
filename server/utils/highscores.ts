@@ -1,6 +1,8 @@
-import Highscore from "../models/Highscore.js";
+import Highscore, { IHighscore } from "../models/Highscore.js";
 
-export async function addHighscore(scoreData) {
+export async function addHighscore(
+  scoreData: Partial<IHighscore>
+): Promise<IHighscore> {
   try {
     if (!scoreData.date) {
       scoreData.date = new Date();
@@ -16,7 +18,7 @@ export async function addHighscore(scoreData) {
   }
 }
 
-export async function getHighscores() {
+export async function getHighscores(): Promise<IHighscore[]> {
   try {
     const highscores = await Highscore.find().sort({ time: 1 });
     return highscores;

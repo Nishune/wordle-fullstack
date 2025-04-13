@@ -7,6 +7,13 @@ function ScoreSubmit({ gameId, onResetGame }) {
   const [error, setError] = useState(""); // Stores error messages if there is any
   const [success, setSuccess] = useState(false); // checks if the score have saved successfully.
 
+  const handleNameChange = (e) => {
+    const value = e.target.value;
+    if (value.length <= 12) {
+      setName(value);
+    }
+  };
+
   //Function to handle the forms submit.
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,6 +21,9 @@ function ScoreSubmit({ gameId, onResetGame }) {
     //Validates that the user name is not empty
     if (!name.trim()) {
       setError("Please enter your name");
+      return;
+    } else if (name.trim().length > 12) {
+      setError("Name cannot be longer than 12 characters.");
       return;
     }
 
@@ -108,12 +118,17 @@ function ScoreSubmit({ gameId, onResetGame }) {
       {/* Inputfield for username */}
       <form onSubmit={handleSubmit}>
         <TextField
-          label="Your Name"
+          label="Your Name (Max 12 characters)"
           variant="outlined"
           fullWidth
           value={name}
-          onChange={(e) => setName(e.target.value)} //Updates name state when the user writes
+          onChange={handleNameChange} //Updates name state when the user writes
           disabled={isSubmitting} //inactivates the field while a submit is "ongoing".
+          slotProps={{
+            input: {
+              maxLength: 12,
+            },
+          }}
           sx={{ mb: 2 }}
         />
 

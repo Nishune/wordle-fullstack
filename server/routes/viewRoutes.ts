@@ -15,7 +15,7 @@ router.get("/highscore", async (req, res) => {
       title: "Wordle Highscore",
       highscores: highscores,
     });
-  } catch (error) {
+  } catch (error: unknown) {
     console.log("Error loading highscores", error);
     res
       .status(500)

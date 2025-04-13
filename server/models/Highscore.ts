@@ -1,6 +1,15 @@
-import mongoose from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 
-const highscoreSchema = new mongoose.Schema({
+export interface IHighscore extends Document {
+  name: string;
+  time: number;
+  guessCount: number;
+  wordLength: number;
+  uniqueLetters: boolean;
+  date: Date;
+}
+
+const highscoreSchema: Schema<IHighscore> = new Schema({
   name: { type: String, required: true },
   time: { type: Number, required: true },
   guessCount: { type: Number, required: true },
