@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getFilteredHighscores } from "../utils/highscores";
+import { getFilteredHighscores } from "../utils/highscores.js";
 
 export async function handleHighscores(
   req: Request,
@@ -20,17 +20,16 @@ export async function handleHighscores(
       uniqueLettersFilter
     );
 
-    res.render("highscore"),
-      {
-        title: "Wordle Highscore",
-        highscores: highscores,
-        wordLengthFilter,
-        uniqueLettersFilter,
-      };
+    res.render("highscore", {
+      title: "Wordle Highscore",
+      highscores: highscores,
+      wordLengthFilter,
+      uniqueLettersFilter,
+    });
   } catch (error) {
-    console.log("Error loadiong highscores", error);
+    console.log("Error loading highscores", error);
     res
       .status(500)
-      .send("An error occurred while tryuing to get the highscore list.");
+      .send("An error occurred while trying to get the highscore list.");
   }
 }

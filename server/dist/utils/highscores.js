@@ -23,4 +23,24 @@ export async function getHighscores() {
         throw error;
     }
 }
+export async function getFilteredHighscores(wordLength = null, uniqueLetters = undefined) {
+    try {
+        const query = {};
+        if (wordLength !== null) {
+            query.wordLength = wordLength;
+        }
+        if (uniqueLetters !== undefined) {
+            query.uniqueLetters = uniqueLetters;
+        }
+        console.log("Filtering highscores with query:", query);
+        const highscores = await Highscore.find(query)
+            .sort({ guessCount: 1, time: 1 })
+            .limit(25);
+        return highscores;
+    }
+    catch (error) {
+        console.error("Error fetching filtered highscores:", error);
+        throw error;
+    }
+}
 //# sourceMappingURL=highscores.js.map
