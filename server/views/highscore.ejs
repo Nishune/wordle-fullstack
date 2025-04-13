@@ -22,6 +22,22 @@
     <div class="content-wrapper">
       <h1>Wordle Highscore</h1>
 
+
+      <div class="filter-container">
+        <h3>Filter Scoreboard</h3>
+        <form class="filter-form" method="GET" action="/highscore">
+          <div class="filter-group">
+            <label for="wordLength">Word-length</label>
+            <select id="wordLength" name="wordLength">
+              <option value="">All</option>
+              <% for(let i = 4; i <= 8; i++) { %>
+                <option value="<%= i %>" <%= wordLengthFilter === i ? 'selected' : '' %>><%= i %> bokstäver</option>
+              <% } %>
+            </select>
+          </div>
+        </form>
+      </div>
+
       <div class="paper">
         <h2>Highscore!</h2>
 
