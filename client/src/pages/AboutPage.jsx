@@ -69,7 +69,8 @@ function AboutPage() {
           3. Guess the word by typing your guesses in the input field.
         </Typography>
 
-        <Typography variant="body1" component="p" sx={{ mb: 2 }}>
+        {/* Ändrat component="p" till component="div" för listan */}
+        <Typography variant="body1" component="div" sx={{ mb: 2 }}>
           4. After each guess, you'll receive feedback:
           <Box component="ul" sx={{ pl: 4 }}>
             <li>Green: Correct letter in the right position</li>
