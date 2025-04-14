@@ -46,7 +46,7 @@ export async function getFilteredHighscores(
 
     const highscores = await Highscore.find(query)
       .sort({ guessCount: 1, time: 1 })
-      .limit(25);
+      .limit(20);
 
     return highscores;
   } catch (error) {

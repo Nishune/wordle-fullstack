@@ -35,7 +35,7 @@ export async function getFilteredHighscores(wordLength = null, uniqueLetters = u
         console.log("Filtering highscores with query:", query);
         const highscores = await Highscore.find(query)
             .sort({ guessCount: 1, time: 1 })
-            .limit(25);
+            .limit(20);
         return highscores;
     }
     catch (error) {
