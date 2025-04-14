@@ -11,8 +11,10 @@ export async function handleHighscores(
       : null;
 
     let uniqueLettersFilter;
-    if (req.query.uniqueLetters !== undefined) {
-      uniqueLettersFilter = req.query.uniqueLetters === "true";
+    if (req.query.uniqueLetters === "true") {
+      uniqueLettersFilter = true;
+    } else if (req.query.uniqueLetters === "false") {
+      uniqueLettersFilter = false;
     }
 
     const highscores = await getFilteredHighscores(
