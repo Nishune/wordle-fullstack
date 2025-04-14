@@ -4,7 +4,7 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "allowJs": true,
-    "outDir": "./dist", // Detta är det viktiga tillägget
+    "outDir": "./dist",
     "sourceMap": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

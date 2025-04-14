@@ -22,6 +22,36 @@
     <div class="content-wrapper">
       <h1>Wordle Highscore</h1>
 
+
+      <div class="filter-container">
+        <h3>Scoreboard Filter</h3>
+        <form class="filter-form" method="GET" action="/highscore">
+          <div class="filter-group">
+            <label for="wordLength">Length:</label>
+            <select id="wordLength" name="wordLength">
+              <option value="">All</option>
+              <% for(let i = 4; i <= 9; i++) { %>
+                <option value="<%= i %>" <%= wordLengthFilter === i ? 'selected' : '' %>><%= i %> letters</option>
+              <% } %>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="uniqueLetters">Unique letters:</label>
+            <select id="uniqueLetters" name="uniqueLetters">
+              <option value="">All</option>
+              <option value="true" <%= uniqueLettersFilter === true ? 'selected' : '' %>>Yes</option>
+              <option value="false" <%= uniqueLettersFilter === false ? 'selected' : '' %>>No</option>
+            </select>
+          </div>
+          <div class="filter-buttons">
+            <button type="submit" class="filter-submit">Apply</button>
+            <% if (wordLengthFilter || uniqueLettersFilter !== undefined) { %>
+              <a href="/highscore" class="filter-reset">Reset</a>
+            <% } %>
+          </div>
+        </form>
+      </div>
+
       <div class="paper">
         <h2>Highscore!</h2>
 
