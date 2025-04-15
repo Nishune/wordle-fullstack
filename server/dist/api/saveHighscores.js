@@ -3,7 +3,6 @@ import { addHighscore } from "../utils/highscores.js";
 export default async function handleSaveHighscore(req, res) {
     const { gameId } = req.params; //Gets the gameId from the URL-params
     const { name } = req.body; //Gets the player name from the request-body.
-    console.log(`Saving highscore for game ${gameId}, player: ${name}`);
     const game = activeGames.get(gameId); // saving the game data from the activeGame Map() in newGame.js, with gameId as key.
     //Checks if the game exists.
     if (!game) {
@@ -19,10 +18,8 @@ export default async function handleSaveHighscore(req, res) {
         res.status(400).json({ error: "Game is not completed successfully" });
         return;
     }
-    console.log(`Game ${gameId} was won, saving highscore`);
     const endTime = Date.now(); // Saves the current time
     const timeTaken = endTime - game.startTime; // saves the time taken to complete the game.
-    console.log(`Game time: ${timeTaken}ms (${Math.floor(timeTaken / 1000)} seconds)`);
     // Creates an object with all relevant data for the highscore.
     const scoreData = {
         name: name, //
@@ -34,7 +31,6 @@ export default async function handleSaveHighscore(req, res) {
     };
     const savedScore = await addHighscore(scoreData); //Saves the players result in the highscore list
     activeGames.delete(gameId); //Deletes the completed game.
-    console.log(`Highscore saved successfully for ${name}`);
     res.json({
         success: true,
         score: savedScore,

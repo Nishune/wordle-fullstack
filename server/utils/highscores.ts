@@ -47,7 +47,6 @@ export async function getFilteredHighscores(
     if (uniqueLetters !== undefined) {
       query.uniqueLetters = uniqueLetters;
     }
-    console.log("Filtering highscores with query:", query);
 
     // Get the highscore from the database that matchen the query.
     //Sort first after lowest guesscount, then time.

@@ -66,7 +66,6 @@ export default function wordleFeedback(guess, correctWord) {
             }
         }
     }
-    console.log("Result array:", JSON.stringify(result, null, 2));
     return result;
 }
 //# sourceMappingURL=wordleFeedback.js.map
