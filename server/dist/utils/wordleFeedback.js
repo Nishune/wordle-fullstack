@@ -1,10 +1,4 @@
-export var LetterResult;
-(function (LetterResult) {
-    LetterResult["CORRECT"] = "correct";
-    LetterResult["MISPLACED"] = "misplaced";
-    LetterResult["INCORRECT"] = "incorrect";
-    LetterResult["PENDING"] = "pending";
-})(LetterResult || (LetterResult = {}));
+import { LetterResult } from "../types/feedback.types.js";
 export default function wordleFeedback(guess, correctWord) {
     //Removes all blank spaces and converts to uppercase.
     guess = guess.replace(/\s/g, "").toUpperCase();

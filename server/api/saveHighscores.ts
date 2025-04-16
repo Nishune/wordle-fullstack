@@ -1,4 +1,5 @@
-import { activeGames, Game } from "./newGame.js";
+import { activeGames } from "./newGame.js";
+import { Game } from "../types/game.types.js";
 import { addHighscore } from "../utils/highscores.js";
 import { Request, Response } from "express";
 

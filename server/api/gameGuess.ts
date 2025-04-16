@@ -1,5 +1,7 @@
-import wordleFeedback, { LetterFeedback } from "../utils/wordleFeedback.js";
-import { activeGames, Game } from "./newGame.js";
+import wordleFeedback from "../utils/wordleFeedback.js";
+import { activeGames } from "./newGame.js";
+import { Game } from "../types/game.types.js";
+import { LetterFeedback } from "../types/feedback.types.js";
 import { Request, Response } from "express";
 
 export default function handleGameGuess(req: Request, res: Response): void {

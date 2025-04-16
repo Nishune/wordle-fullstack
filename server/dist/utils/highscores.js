@@ -14,16 +14,6 @@ export async function addHighscore(scoreData) {
         throw error;
     }
 }
-// export async function getHighscores(): Promise<IHighscore[]> {
-//   try {
-//     //Gets all highscores from the database and sort them by time.
-//     const highscores = await Highscore.find().sort({ time: 1 });
-//     return highscores;
-//   } catch (error) {
-//     console.error("Error getting highscores:", error);
-//     throw error;
-//   }
-// }
 export async function getFilteredHighscores(wordLength = null, //wordlength can be either a nymber or null, default is null.
 uniqueLetters = undefined // uniqueLetters can be boolean or undefined, default is undefined.
 ) {

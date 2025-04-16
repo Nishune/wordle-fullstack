@@ -4,7 +4,7 @@ import { activeGames } from "../api/newGame";
 import { loadWordList } from "../utils/loadWordList";
 import { enableTestMode } from "../utils/selectWord";
 import { describe, it, expect, beforeAll, beforeEach } from "@jest/globals";
-import { LetterFeedback } from "../utils/wordleFeedback";
+import { LetterFeedback } from "../types/feedback.types.js";
 
 /////
 //Variables used in the tests

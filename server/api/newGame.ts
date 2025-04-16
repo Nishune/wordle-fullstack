@@ -1,22 +1,7 @@
 import { getWordList } from "../utils/loadWordList.js";
 import selectWord from "../utils/selectWord.js";
 import { Request, Response } from "express";
-import { LetterFeedback } from "../utils/wordleFeedback.js";
-
-interface GameSettings {
-  wordLength: number;
-  uniqueLetters: boolean;
-}
-
-export interface Game {
-  word: string;
-  guesses: {
-    guess: string;
-    feedback: LetterFeedback[];
-  }[];
-  startTime: number;
-  settings: GameSettings;
-}
+import { Game } from "../types/game.types.js";
 
 //Using Map to store all active games in the memory on the server.
 export const activeGames = new Map<string, Game>();
