@@ -1,9 +1,28 @@
+// Variabel för att hålla testordet när det är i testläge
+let testModeWord: string | null = null;
+
+// Aktivera testläge med ett specifikt ord
+export function enableTestMode(word: string): void {
+  testModeWord = word;
+}
+
+// Inaktivera testläge
+export function disableTestMode(): void {
+  testModeWord = null;
+}
+
 function selectWord(
   wordList: string[],
   desiredLength: number,
   uniqueLettersOnly: boolean = false
 ): string | null {
-  // Check so that the worstlist is a array and contains words
+  // Om testläge är aktivt, returnera testordet
+  if (testModeWord !== null) {
+    return testModeWord;
+  }
+
+  // Resten av funktionen som vanligt...
+  // Check so that the wordlist is a array and contains words
   if (!Array.isArray(wordList) || wordList.length === 0) {
     return null;
   }
