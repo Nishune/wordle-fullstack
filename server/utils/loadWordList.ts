@@ -4,8 +4,16 @@ import fs from "fs/promises";
 let wordList: string[] = [];
 
 //Function to read in the words from the file.
-export async function loadWordList(): Promise<void> {
+export async function loadWordList(testWordList?: string[]): Promise<void> {
   //Promise void means that is asyncronous, and wont return a value when its done.
+
+  //if testWordList exists, use that instead of reading file
+  if (testWordList) {
+    wordList = testWordList;
+    console.log(`Laddade ${wordList.length} testord`);
+    return;
+  }
+
   try {
     // Reads the file words_alpha.txt loacted in the data folder.
     const data: string = await fs.readFile("./data/words_alpha.txt", "utf8");

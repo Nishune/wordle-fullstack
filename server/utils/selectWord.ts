@@ -1,9 +1,30 @@
+/////
+//Functionality added for integration-tests
+/////
+
+let testModeWord: string | null = null; //Store the testword when we are in test mode
+
+export function enableTestMode(word: string): void {
+  // Activate test mode with a specific word
+  testModeWord = word;
+}
+
+export function disableTestMode(): void {
+  // Activate testmode for our integrationtest gameflow.test.ts.
+  testModeWord = null;
+}
+
 function selectWord(
   wordList: string[],
   desiredLength: number,
   uniqueLettersOnly: boolean = false
 ): string | null {
-  // Check so that the worstlist is a array and contains words
+  // If testmode is active, return the test word
+  if (testModeWord !== null) {
+    return testModeWord;
+  }
+
+  // Check so that the wordlist is a array and contains words
   if (!Array.isArray(wordList) || wordList.length === 0) {
     return null;
   }
@@ -32,7 +53,6 @@ function selectWord(
 
   console.log(`The selected word is: ${selectedWord}`);
 
-  // Returnera det valda ordet
   return selectedWord;
 }
 
