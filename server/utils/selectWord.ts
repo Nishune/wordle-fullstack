@@ -1,13 +1,16 @@
-// Variabel för att hålla testordet när det är i testläge
-let testModeWord: string | null = null;
+/////
+//Functionality added for integration-tests
+/////
 
-// Aktivera testläge med ett specifikt ord
+let testModeWord: string | null = null; //Store the testword when we are in test mode
+
 export function enableTestMode(word: string): void {
+  // Activate test mode with a specific word
   testModeWord = word;
 }
 
-// Inaktivera testläge
 export function disableTestMode(): void {
+  // Activate testmode for our integrationtest gameflow.test.ts.
   testModeWord = null;
 }
 
@@ -16,12 +19,11 @@ function selectWord(
   desiredLength: number,
   uniqueLettersOnly: boolean = false
 ): string | null {
-  // Om testläge är aktivt, returnera testordet
+  // If testmode is active, return the test word
   if (testModeWord !== null) {
     return testModeWord;
   }
 
-  // Resten av funktionen som vanligt...
   // Check so that the wordlist is a array and contains words
   if (!Array.isArray(wordList) || wordList.length === 0) {
     return null;
@@ -51,7 +53,6 @@ function selectWord(
 
   console.log(`The selected word is: ${selectedWord}`);
 
-  // Returnera det valda ordet
   return selectedWord;
 }
 

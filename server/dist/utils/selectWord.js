@@ -1,5 +1,19 @@
+//Store the testword when we are in test mode
+let testModeWord = null;
+// Activate test mode with a specific word
+export function enableTestMode(word) {
+    testModeWord = word;
+}
+// Activate testmode for our integrationtest gameflow.test.ts.
+export function disableTestMode() {
+    testModeWord = null;
+}
 function selectWord(wordList, desiredLength, uniqueLettersOnly = false) {
-    // Check so that the worstlist is a array and contains words
+    // If testmode is active, return the test word
+    if (testModeWord !== null) {
+        return testModeWord;
+    }
+    // Check so that the wordlist is a array and contains words
     if (!Array.isArray(wordList) || wordList.length === 0) {
         return null;
     }

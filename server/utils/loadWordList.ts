@@ -7,7 +7,7 @@ let wordList: string[] = [];
 export async function loadWordList(testWordList?: string[]): Promise<void> {
   //Promise void means that is asyncronous, and wont return a value when its done.
 
-  // Om testWordList finns, använd den istället för att läsa fil
+  //if testWordList exists, use that instead of reading file
   if (testWordList) {
     wordList = testWordList;
     console.log(`Laddade ${wordList.length} testord`);

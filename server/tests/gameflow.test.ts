@@ -4,6 +4,7 @@ import { activeGames } from "../api/newGame";
 import { loadWordList } from "../utils/loadWordList";
 import { enableTestMode } from "../utils/selectWord";
 import { describe, it, expect, beforeAll, beforeEach } from "@jest/globals";
+import { LetterFeedback } from "../utils/wordleFeedback";
 
 /////
 //Variables used in the tests
@@ -126,5 +127,34 @@ describe("Game flow integration test for the game", () => {
     expect(lastResponse?.body).toHaveProperty("isGameOver", true); // after 6 guesses, expect game to be marked as game over.
 
     expect(lastResponse?.body).toHaveProperty("word", TEST_WORD.toUpperCase()); // expect the correct word to be shown to the player after game over.
+  });
+
+  /////
+  // 5. Testing the feedback provided from a guess.
+  /////
+
+  it("Should provide the correct feedback for each letter in the guess", async () => {
+    const gameId = await createNewGame();
+    const guessResponse = await makeGuess(gameId, "TAPES"); //Making a guess with TAPES, since it has T & S in the "secret word" TESTS.
+    const feedback = guessResponse.body.feedback; // GHets the feedback array from the response objekt
+
+    expect(guessResponse.status).toBe(200);
+    expect(guessResponse.body).toHaveProperty("feedback"); //expect the reponse to have a feedback array
+
+    expect(feedback[0]).toHaveProperty("letter", "T"); //expect first letter to be T
+    expect(feedback[0]).toHaveProperty("result", "correct"); //expect the result to be correct
+
+    expect(feedback[4]).toHaveProperty("letter", "S"); //expect last letter to be S
+    expect(feedback[4]).toHaveProperty("result", "correct"); //expect result to be correct
+
+    //Checks that the result value is one of the three types
+    feedback.forEach((letterFeedback: LetterFeedback) => {
+      expect(letterFeedback).toHaveProperty("letter");
+      expect(letterFeedback).toHaveProperty("result");
+
+      expect(["correct", "misplaced", "incorrect"]).toContain(
+        letterFeedback.result
+      );
+    });
   });
 });
