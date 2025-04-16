@@ -1,11 +1,13 @@
-//Store the testword when we are in test mode
-let testModeWord = null;
-// Activate test mode with a specific word
+/////
+//Functionality added for integration-tests
+/////
+let testModeWord = null; //Store the testword when we are in test mode
 export function enableTestMode(word) {
+    // Activate test mode with a specific word
     testModeWord = word;
 }
-// Activate testmode for our integrationtest gameflow.test.ts.
 export function disableTestMode() {
+    // Activate testmode for our integrationtest gameflow.test.ts.
     testModeWord = null;
 }
 function selectWord(wordList, desiredLength, uniqueLettersOnly = false) {
@@ -35,7 +37,6 @@ function selectWord(wordList, desiredLength, uniqueLettersOnly = false) {
     // Take a random word from the filtered words.
     const selectedWord = filteredWords[Math.floor(Math.random() * filteredWords.length)];
     console.log(`The selected word is: ${selectedWord}`);
-    // Returnera det valda ordet
     return selectedWord;
 }
 export default selectWord;

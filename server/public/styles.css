@@ -28,7 +28,6 @@ header {
   box-shadow: 0 4px 8px rgba(255, 152, 0, 0.3);
   padding: 0.5rem 0;
   width: 100%;
-  /* position: fixed; */
   top: 0;
   z-index: 100;
 }
@@ -123,7 +122,6 @@ tr:hover {
   color: var(--text-secondary);
 }
 
-/* Filter-relaterade stilar */
 .filter-container {
   background-color: var(--filter-background);
   border-radius: 8px;
@@ -182,12 +180,12 @@ tr:hover {
 
 .filter-submit {
   background-color: var(--primary-color);
-  color: var(--text-primary);
+  color: #000000;
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: bold;
   transition: all 0.3s;
 }
 
@@ -205,7 +203,7 @@ tr:hover {
   cursor: pointer;
   text-decoration: none;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: bold;
   display: inline-block;
   transition: all 0.3s;
 }
@@ -214,7 +212,6 @@ tr:hover {
   background-color: #616161;
 }
 
-/* Responsivitet */
 @media (max-width: 768px) {
   table {
     font-size: 0.9rem;
