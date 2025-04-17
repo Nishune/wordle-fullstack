@@ -14,8 +14,8 @@ function GameBoard({
   message, //prop from gameState in homepage
   onMakeGuess, //function in homepage
   onResetGame, //function in homepage
-  gameId,
-  isWon,
+  gameId, //prop from gameState.gameId in homepage, used for saving score
+  isWon, //prop from gameState.isWon in homepage, determines if player won
 }) {
   return (
     <Paper

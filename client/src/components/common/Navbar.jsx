@@ -5,81 +5,50 @@ import { AppBar, Toolbar, Box, Button } from "@mui/material";
 function Navigation() {
   const location = useLocation();
 
+  // This is a base style for all the buttons in the navbar
+  const buttonBaseStyle = (isActive) => (theme) => ({
+    color: theme.palette.common.white,
+    fontSize: "1.1rem",
+    fontWeight: isActive ? 700 : 500,
+    padding: "12px 16px",
+    borderRadius: 0,
+    borderBottom: isActive
+      ? `2px solid ${theme.palette.primary.main}`
+      : "2px solid transparent",
+    transition: "all 0.3s",
+    "&:hover": {
+      backgroundColor: `${theme.palette.primary.main}10`,
+      borderBottom: `2px solid ${theme.palette.primary.main}`,
+    },
+    marginLeft: 1,
+  });
+
   return (
     <AppBar
       position="static"
-      sx={{
-        backgroundColor: "#000000",
-        boxShadow: "0 4px 8px rgba(255, 152, 0, 0.3)",
-      }}
+      sx={(theme) => ({
+        backgroundColor: theme.palette.common.black,
+        boxShadow: `0 4px 8px ${theme.palette.primary.main}30`,
+      })}
     >
       <Toolbar sx={{ display: "flex", justifyContent: "flex-end" }}>
         <Box sx={{ display: "flex" }}>
           <Button
             component={RouterLink}
             to="/"
-            sx={{
-              color: "#FFFFFF",
-              fontSize: "1.1rem",
-              fontWeight: location.pathname === "/" ? 700 : 500,
-              padding: "12px 16px",
-              borderRadius: 0,
-              borderBottom:
-                location.pathname === "/"
-                  ? "2px solid #FF9800"
-                  : "2px solid transparent",
-              transition: "all 0.3s",
-              "&:hover": {
-                backgroundColor: "rgba(255, 152, 0, 0.1)",
-                borderBottom: "2px solid #FF9800",
-              },
-              marginLeft: 1,
-            }}
+            sx={buttonBaseStyle(location.pathname === "/")}
           >
             Home
           </Button>
           <Button
             component={RouterLink}
             to="/about"
-            sx={{
-              color: "#FFFFFF",
-              fontSize: "1.1rem",
-              fontWeight: location.pathname === "/about" ? 700 : 500,
-              padding: "12px 16px",
-              borderRadius: 0,
-              borderBottom:
-                location.pathname === "/about"
-                  ? "2px solid #FF9800"
-                  : "2px solid transparent",
-              transition: "all 0.3s",
-              "&:hover": {
-                backgroundColor: "rgba(255, 152, 0, 0.1)",
-                borderBottom: "2px solid #FF9800",
-              },
-              marginLeft: 1,
-            }}
+            sx={buttonBaseStyle(location.pathname === "/about")}
           >
             About
           </Button>
 
-          <Button
-            component="a"
-            href="/highscore"
-            sx={{
-              color: "#FFFFFF",
-              fontSize: "1.1rem",
-              fontWeight: 500,
-              padding: "12px, 16px",
-              borderRadius: 0,
-              borderBottom: "2px solid transparent",
-              transition: "all 0.3s",
-              "&:hover": {
-                backgroundColor: "rgba(255, 152, 0, 0.1",
-                borderBottom: "2px solid #FF9800",
-              },
-              marginLeft: 1,
-            }}
-          >
+          <Button component="a" href="/highscore" sx={buttonBaseStyle(false)}>
             Highscore
           </Button>
         </Box>

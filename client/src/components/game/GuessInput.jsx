@@ -72,7 +72,7 @@ function GuessInput({ wordLength, onMakeGuess, disabled = false }) {
         variant="contained"
         color="primary"
         disabled={currentGuess.length !== wordLength || disabled} //Deactivated the button if the guess is not correct length || disabled prop = true
-        endIcon={<Send />} //Added a send icon here (MIGHT BE REMOVED!)
+        endIcon={<Send />}
         sx={(theme) => ({
           padding: `${theme.spacing(1.5)} ${theme.spacing(3)}`,
           textTransform: "none",
