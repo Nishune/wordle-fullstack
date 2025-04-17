@@ -6,7 +6,6 @@ import dotenv from "dotenv";
 dotenv.config();
 const PORT = 5080;
 
-// Starta servern
 async function startServer() {
   await connectDB();
   await loadWordList();
