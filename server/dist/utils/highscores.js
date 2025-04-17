@@ -28,7 +28,6 @@ uniqueLetters = undefined // uniqueLetters can be boolean or undefined, default 
         if (uniqueLetters !== undefined) {
             query.uniqueLetters = uniqueLetters;
         }
-        console.log("Filtering highscores with query:", query);
         // Get the highscore from the database that matchen the query.
         //Sort first after lowest guesscount, then time.
         // Shows top 20 as limit.

@@ -69,6 +69,5 @@ export default function wordleFeedback(
       }
     }
   }
-  console.log("Result array:", JSON.stringify(result, null, 2));
   return result;
 }

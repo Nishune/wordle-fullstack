@@ -35,7 +35,6 @@ export async function handleHighscores(
       uniqueLettersFilter, // Same as word length, but for unique letters.
     });
   } catch (error) {
-    console.log("Error loading highscores", error);
     res
       .status(500)
       .send("An error occurred while trying to get the highscore list.");

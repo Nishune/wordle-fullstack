@@ -7,13 +7,10 @@ import { Game } from "../types/game.types.js";
 export const activeGames = new Map<string, Game>();
 
 export default function handleNewGame(req: Request, res: Response): void {
-  console.log("New game request revievied with params:", req.query);
-
   const wordList = getWordList(); //Gets the wordlist from the server
 
   //Checks if the wordlist is empty
   if (!wordList.length) {
-    console.error("ERROR: wordlist is empty");
     res.status(500).json({ error: "Wordlist is not loaded yet." });
     return;
   }
@@ -23,10 +20,6 @@ export default function handleNewGame(req: Request, res: Response): void {
   const length = !isNaN(lengthVal) ? lengthVal : 5;
   const uniqueQuery = req.query.unique as string | undefined;
   const uniqueLetters = uniqueQuery ? JSON.parse(uniqueQuery) : false;
-
-  console.log(
-    `Selecting a word with length ${length}, unique letters: ${uniqueLetters}`
-  );
 
   try {
     // Chose a word from the wordliust based on the critera
@@ -54,17 +47,12 @@ export default function handleNewGame(req: Request, res: Response): void {
         uniqueLetters: uniqueLetters,
       },
     });
-    console.log(` Game created successfully!`);
-    console.log(` Game ID: ${gameId}`);
-    console.log(` Secret word: ${word.toUpperCase()} (only visible on server)`);
-    console.log(` Total active games: ${activeGames.size}`);
 
     res.json({
       gameId, // Games unique ID
       wordLength: length, //The words length
     });
   } catch (error) {
-    console.log("Error starting new game", error);
     res.status(500).json({ error: "Server errir" });
   }
 }
