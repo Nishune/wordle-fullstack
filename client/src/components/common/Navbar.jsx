@@ -5,7 +5,7 @@ import { AppBar, Toolbar, Box, Button } from "@mui/material";
 function Navigation() {
   const location = useLocation();
 
-  // This is a base style for all the buttons in the navbar
+  // VBase style for the buttons in the navbar
   const buttonBaseStyle = (isActive) => (theme) => ({
     color: theme.palette.common.white,
     fontSize: "1.1rem",
@@ -24,13 +24,7 @@ function Navigation() {
   });
 
   return (
-    <AppBar
-      position="static"
-      sx={(theme) => ({
-        backgroundColor: theme.palette.common.black,
-        boxShadow: `0 4px 8px ${theme.palette.primary.main}30`,
-      })}
-    >
+    <AppBar position="static">
       <Toolbar sx={{ display: "flex", justifyContent: "flex-end" }}>
         <Box sx={{ display: "flex" }}>
           <Button
