@@ -1,0 +1,25 @@
+{
+  "name": "wordle-fullstack",
+  "version": "1.0.0",
+  "description": "Fullstack Wordle applikation",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "npm run install-server && npm run install-client",
+    "install-all": "npm install",
+    "install-server": "cd server && npm install",
+    "install-client": "cd client && npm install",
+    "start": "cd server && npm start",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
+    "build": "npm run build-server && npm run build-client",
+    "build-server": "cd server && npm run build",
+    "build-client": "cd client && npm run build",
+    "test": "npm run test-server",
+    "test-server": "cd server && npm test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
