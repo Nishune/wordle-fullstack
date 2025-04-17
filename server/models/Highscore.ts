@@ -1,13 +1,5 @@
-import mongoose, { Document, Schema } from "mongoose";
-
-export interface IHighscore extends Document {
-  name: string;
-  time: number;
-  guessCount: number;
-  wordLength: number;
-  uniqueLetters: boolean;
-  date: Date;
-}
+import mongoose, { Schema } from "mongoose";
+import { IHighscore } from "../types/db.types.js";
 
 const highscoreSchema: Schema<IHighscore> = new Schema({
   name: { type: String, required: true },

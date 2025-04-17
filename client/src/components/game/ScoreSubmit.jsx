@@ -47,7 +47,6 @@ function ScoreSubmit({ gameId, onResetGame }) {
 
       setSuccess(true); // "Marks" that the score has been saved successfully.
     } catch (error) {
-      console.error("Error submitting score:", error);
       setError(error.message);
     } finally {
       setIsSubmitting(false); //Set to false again and activates the form.

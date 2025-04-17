@@ -1,117 +1,134 @@
-# Wordle Game with Highscore List
+# Wordle Fullstack
 
-A fullstack Wordle-inspired game with highscore functionality and an information page, built with modern web technologies.
+A fullstack implementation of the popular word guessing game Wordle, with customizable difficulty, scoring system, and leaderboard.
 
-## 📋 Features
+## Overview
 
-- **Wordle Game** with customizable settings
-  - Choose word length
-  - Choose whether words can contain repeated letters
-- **Highscore List** stored in a database
-- **Information Page** about the project
-- **Secure Implementation** to prevent cheating
+This project is a fullstack implementation of the Wordle game where players guess a secret word within 6 attempts. After each guess, players receive feedback on which letters are correct, exist in the word but in the wrong position, or don't exist in the word at all. The project includes a React frontend, an Express backend, and a MongoDB database to store high scores.
 
-## 🛠️ Technologies
+## Features
+
+- **Customizable difficulty**: Choose word length (4-9 letters) and whether you want the word to contain only unique letters
+- **Visual feedback**: Clear color-coded feedback for each guess (green, yellow, red)
+- **Scoring system**: Based on the number of guesses and time taken to solve the word
+- **Leaderboard**: Server-side rendered leaderboard with filtering options
+- **Responsive design**: Works on both desktop and mobile devices
+- **Dark theme**: Modern design with a dark theme
+
+## Tech Stack
 
 ### Frontend
 
-- **React** - For the user interface
-- **Material-UI (MUI)** - For styling with a sleek black and orange theme
-- **React Router** - For route handling
+- **React 19**: For building the user interface
+- **Material UI 7**: Component library for styling
+- **React Router 7**: For client-side routing
+- **Vite**: building tool
 
 ### Backend
 
-- **Node.js** - Runtime environment
-- **Express** - Web server framework
-- **MongoDB** - Database for storing highscores
-- **EJS** - Templating for server-side rendering of the highscore page
+- **Node.js**: JavaScript runtime
+- **Express**: Web framework
+- **TypeScript**: For type-safe code
+- **MongoDB**: NoSQL database for storing high scores
+- **Mongoose**: ODM (Object Data Modeling) for MongoDB
+- **EJS**: Template engine for server-side rendering
 
-### Communication
+### Testing
 
-- **RESTful API** - For communication between frontend and backend
-- **JSON** - For data transfer
+- **Jest**: Testing framework
+- **Supertest**: For API testing
 
-## 🏗️ Project Structure
+## Installation
 
-The project is divided into two main parts:
+### Steps
 
-- **client/** - React frontend
-- **server/** - Node.js backend
+1. Install dependencies:
 
-### API Endpoints
+```bash
+npm install
+```
 
-- `GET /api/game/new` - Starts a new game and returns a unique game ID
-- `POST /api/game/:gameId/guess` - Sends a guess and receives feedback
-- `POST /api/game/:gameId/save-score` - Saves a highscore after completing a game
+This will install dependencies for both frontend and backend.
 
-### Views (Routes)
-
-- `/` - Home page with the game component
-- `/about` - Information page about the project
-- `/highscore` - Server-rendered highscore list
-
-## 🔒 Security
-
-The game is implemented with security in mind:
-
-- The secret word is only stored on the server
-- Feedback is generated on the server
-- The word is only revealed when the game is over (win or loss)
-- Timing is handled on the server to prevent cheating
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js (v14 or later)
-- MongoDB
-
-### Installation
-
-1. Clone the repository:
-
-   ```
-   git clone <repo-url>
-   ```
-
-2. Install dependencies:
-
-   ```
-   npm install
-   ```
-
-3. Create a `.env` file in the server folder with the following content:
-
-   ```
-   MONGODB_URI=<your-mongodb-connection-url>
-   ```
-
-4. Start the server:
-
-   ```
-   npm start
-   ```
-
-5. Visit `http://localhost:5080` in your browser
-
-## 🧪 Tests
-
-Run the tests with:
+2. Configure environment variables:
+   Create a `.env` file in the server folder:
 
 ```
+MONGODB_URI=mongodb://localhost:27017/wordle
+```
+
+3. Build the project:
+
+```bash
+npm run build
+```
+
+## Usage
+
+### Development
+
+To run both frontend and backend in development mode:
+
+```bash
+npm run dev
+```
+
+Frontend will run on `http://localhost:5173` and backend on `http://localhost:5080`.
+
+### Production
+
+To build and start the project for production:
+
+```bash
+npm run build
+npm start
+```
+
+The app will then run on `http://localhost:5080`.
+
+## API Documentation
+
+### Game API
+
+- `GET /api/game/new?length=[number]&unique=[boolean]` - Start a new game
+
+  - Query parameters:
+    - `length`: Word length (4-9)
+    - `unique`: Whether the word should have unique letters (true/false)
+  - Response: `{ gameId: string, wordLength: number }`
+
+- `POST /api/game/:gameId/guess` - Make a guess
+
+  - Parameters:
+    - `gameId`: Game ID
+  - Body: `{ guess: string }`
+  - Response: `{ feedback: Array, isCorrect: boolean, guessCount: number, word?: string, isGameOver?: boolean }`
+
+- `POST /api/game/:gameId/save-score` - Save score
+  - Parameters:
+    - `gameId`: Game ID
+  - Body: `{ name: string }`
+  - Response: `{ success: boolean, score: Object }`
+
+### Server-rendered Pages
+
+- `GET /highscore` - Display the leaderboard
+  - Query parameters (optional):
+    - `wordLength`: Filter by word length
+    - `uniqueLetters`: Filter by unique letters (true/false)
+
+## Testing
+
+The project contains unit and integration tests for the backend.
+
+### Running Tests
+
+```bash
 npm test
 ```
 
-## 📝 Game Rules
+Tests include:
 
-1. A random word is selected based on your settings (word length, unique letters)
-2. You have 6 attempts to guess the word
-3. After each guess, you receive feedback:
-   - **Green** - Correct letter in the correct position
-   - **Yellow** - Correct letter in the wrong position
-   - **Red** - Incorrect letter
-4. If you win, you can save your result to the highscore list
-
-## 👨‍💻 Developed by
-
-Rikard Engström
+- Testing of the Wordle feedback algorithm
+- Testing of word selection logic
+- Integration of the entire game flow

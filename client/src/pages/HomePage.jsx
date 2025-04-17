@@ -58,11 +58,8 @@ function HomePage() {
         isWon: false,
         startTime: Date.now(),
       });
-
-      console.log("Game Started with ID:", data.gameId);
     } catch (error) {
       // Handle errors when starting the game.
-      console.error("Error starting game:", error);
       setError(error.message);
     } finally {
       setLoading(false); // Sets the loading spinner to false
@@ -111,7 +108,6 @@ function HomePage() {
       }));
     } catch (error) {
       //Error handling for guesses (Maybe make error handling to a func??)
-      console.log("Error making guess", error);
       setError(error.message);
     } finally {
       setLoading(false);

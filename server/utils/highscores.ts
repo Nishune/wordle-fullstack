@@ -1,5 +1,5 @@
-import Highscore, { IHighscore } from "../models/Highscore.js";
-
+import Highscore from "../models/Highscore.js";
+import { IHighscore } from "../types/db.types.js";
 //The function takes a Partial<IHighscore> object, which means all fields in iHighscore are "free of choice"
 
 export async function addHighscore(
@@ -19,17 +19,6 @@ export async function addHighscore(
   }
 }
 
-// export async function getHighscores(): Promise<IHighscore[]> {
-//   try {
-//     //Gets all highscores from the database and sort them by time.
-//     const highscores = await Highscore.find().sort({ time: 1 });
-//     return highscores;
-//   } catch (error) {
-//     console.error("Error getting highscores:", error);
-//     throw error;
-//   }
-// }
-
 export async function getFilteredHighscores(
   wordLength: number | null = null, //wordlength can be either a nymber or null, default is null.
   uniqueLetters: boolean | undefined = undefined // uniqueLetters can be boolean or undefined, default is undefined.
@@ -47,7 +36,6 @@ export async function getFilteredHighscores(
     if (uniqueLetters !== undefined) {
       query.uniqueLetters = uniqueLetters;
     }
-    console.log("Filtering highscores with query:", query);
 
     // Get the highscore from the database that matchen the query.
     //Sort first after lowest guesscount, then time.

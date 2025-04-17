@@ -10,7 +10,6 @@ export async function loadWordList(testWordList?: string[]): Promise<void> {
   //if testWordList exists, use that instead of reading file
   if (testWordList) {
     wordList = testWordList;
-    console.log(`Laddade ${wordList.length} testord`);
     return;
   }
 
@@ -20,8 +19,6 @@ export async function loadWordList(testWordList?: string[]): Promise<void> {
     // Splits the content of the file at each linebreak.
     // And saves each row as an element in the wordlist Array.
     wordList = data.split(/\r?\n/);
-
-    console.log(`Laddade ${wordList.length} ord från ordlistan`);
   } catch (error) {
     console.error("Error when reading wordlist:", error);
   }

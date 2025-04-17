@@ -22,15 +22,17 @@ body {
   color: var(--text-primary);
   background-color: var(--background-color);
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
   box-shadow: 0 4px 8px rgba(255, 152, 0, 0.3);
   padding: 0.5rem 0;
   width: 100%;
-  /* position: fixed; */
   top: 0;
   z-index: 100;
+  background-color: #000000;
 }
 
 nav {
@@ -79,6 +81,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   padding: 24px;
+  flex: 1;
 }
 
 .paper {
@@ -123,7 +126,6 @@ tr:hover {
   color: var(--text-secondary);
 }
 
-/* Filter-relaterade stilar */
 .filter-container {
   background-color: var(--filter-background);
   border-radius: 8px;
@@ -182,12 +184,12 @@ tr:hover {
 
 .filter-submit {
   background-color: var(--primary-color);
-  color: var(--text-primary);
+  color: #000000;
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: bold;
   transition: all 0.3s;
 }
 
@@ -205,7 +207,7 @@ tr:hover {
   cursor: pointer;
   text-decoration: none;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: bold;
   display: inline-block;
   transition: all 0.3s;
 }
@@ -214,7 +216,6 @@ tr:hover {
   background-color: #616161;
 }
 
-/* Responsivitet */
 @media (max-width: 768px) {
   table {
     font-size: 0.9rem;
@@ -253,5 +254,138 @@ tr:hover {
   .paper,
   .filter-container {
     padding: 1.5rem;
+  }
+}
+
+.footer {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  margin-top: auto;
+  background-color: #000000;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  border-top: 2px solid var(--primary-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  color: var(--primary-color);
+  transition: background-color 0.3s;
+}
+
+.icon-button:hover {
+  background-color: var(--hover-color);
+}
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+  fill: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  thead {
+    display: none;
+  }
+
+  table,
+  tbody {
+    display: block;
+    width: 100%;
+  }
+
+  tr {
+    display: block;
+    background-color: var(--paper-background);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border-left: 3px solid var(--primary-color);
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    text-align: right;
+    border-bottom: 1px solid var(--secondary-light);
+    position: relative;
+  }
+
+  td:last-child {
+    border-bottom: none;
+  }
+
+  td:nth-of-type(1):before {
+    content: "Place";
+  }
+  td:nth-of-type(2):before {
+    content: "Name";
+  }
+  td:nth-of-type(3):before {
+    content: "Time";
+  }
+  td:nth-of-type(4):before {
+    content: "Number of guesses";
+  }
+  td:nth-of-type(5):before {
+    content: "Word-length";
+  }
+  td:nth-of-type(6):before {
+    content: "Unique letters";
+  }
+  td:nth-of-type(7):before {
+    content: "Date";
+  }
+
+  td:before {
+    font-weight: 600;
+    color: var(--primary-color);
+    text-align: left;
+    padding-right: 0.5rem;
+  }
+
+  td:first-child {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 480px) {
+  .paper {
+    padding: 1rem;
+  }
+
+  tr {
+    padding: 0.5rem;
+  }
+
+  td {
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
   }
 }

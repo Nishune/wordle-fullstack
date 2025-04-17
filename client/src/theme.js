@@ -1,24 +1,23 @@
 import { createTheme } from "@mui/material/styles";
 
-// Orange och svart tema
 const theme = createTheme({
   palette: {
-    mode: "dark", // Mörk bas för temat
+    mode: "dark",
     primary: {
-      main: "#FF9800", // Orange som primärfärg
+      main: "#FF9800",
       light: "#FFB74D",
       dark: "#F57C00",
-      contrastText: "#000000", // Svart text på orange bakgrund
+      contrastText: "#000000",
     },
     secondary: {
-      main: "#000000", // Svart som sekundärfärg
+      main: "#000000",
       light: "#212121",
       dark: "#000000",
-      contrastText: "#FF9800", // Orange text på svart bakgrund
+      contrastText: "#FF9800",
     },
     background: {
-      default: "#121212", // Mörk bakgrund för sidor
-      paper: "#1E1E1E", // Mörk bakgrund för komponenter
+      default: "#121212",
+      paper: "#1E1E1E",
     },
     text: {
       primary: "#FFFFFF",
@@ -28,31 +27,31 @@ const theme = createTheme({
       active: "#FF9800",
       hover: "rgba(255, 152, 0, 0.1)",
     },
-    // Halloween-accent om du vill ha lite extra flair
+
     warning: {
-      main: "#FF6D00", // Mörkare orange för varningar
+      main: "#FF6D00",
     },
     error: {
-      main: "#D84315", // Mörk orange-röd för fel
+      main: "#D84315",
     },
   },
   typography: {
     fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
     button: {
-      textTransform: "none", // Tar bort automatisk versaler på knappar
+      textTransform: "none",
       fontWeight: 500,
     },
     h5: {
       fontWeight: 700,
-      color: "#FF9800", // Orange rubriker
+      color: "#FF9800",
     },
   },
   components: {
     MuiAppBar: {
       styleOverrides: {
         root: {
-          boxShadow: "1 4px 8px rgba(255, 152, 0, 0.3)", // Orange skugga
-          backgroundColor: "#000000", // Svart AppBar
+          boxShadow: "1 4px 8px rgba(255, 152, 0, 0.3)",
+          background: "#000000",
         },
       },
     },
@@ -64,7 +63,7 @@ const theme = createTheme({
         },
         containedPrimary: {
           "&:hover": {
-            backgroundColor: "#F57C00", // Mörkare orange vid hover
+            backgroundColor: "#F57C00",
           },
         },
       },
@@ -80,7 +79,7 @@ const theme = createTheme({
     MuiCheckbox: {
       styleOverrides: {
         root: {
-          color: "#FF9800", // Orange checkbox
+          color: "#FF9800",
           "&.Mui-checked": {
             color: "#FF9800",
           },
@@ -91,7 +90,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#FF9800", // Orange fokuserad border
+            borderColor: "#FF9800",
           },
         },
       },

@@ -3,11 +3,9 @@ import selectWord from "../utils/selectWord.js";
 //Using Map to store all active games in the memory on the server.
 export const activeGames = new Map();
 export default function handleNewGame(req, res) {
-    console.log("New game request revievied with params:", req.query);
     const wordList = getWordList(); //Gets the wordlist from the server
     //Checks if the wordlist is empty
     if (!wordList.length) {
-        console.error("ERROR: wordlist is empty");
         res.status(500).json({ error: "Wordlist is not loaded yet." });
         return;
     }
@@ -17,7 +15,6 @@ export default function handleNewGame(req, res) {
     const length = !isNaN(lengthVal) ? lengthVal : 5;
     const uniqueQuery = req.query.unique;
     const uniqueLetters = uniqueQuery ? JSON.parse(uniqueQuery) : false;
-    console.log(`Selecting a word with length ${length}, unique letters: ${uniqueLetters}`);
     try {
         // Chose a word from the wordliust based on the critera
         const word = selectWord(wordList, length, uniqueLetters);
@@ -42,17 +39,12 @@ export default function handleNewGame(req, res) {
                 uniqueLetters: uniqueLetters,
             },
         });
-        console.log(` Game created successfully!`);
-        console.log(` Game ID: ${gameId}`);
-        console.log(` Secret word: ${word.toUpperCase()} (only visible on server)`);
-        console.log(` Total active games: ${activeGames.size}`);
         res.json({
             gameId, // Games unique ID
             wordLength: length, //The words length
         });
     }
     catch (error) {
-        console.log("Error starting new game", error);
         res.status(500).json({ error: "Server errir" });
     }
 }

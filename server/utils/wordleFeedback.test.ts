@@ -1,5 +1,6 @@
 import { expect, describe, it } from "@jest/globals";
-import wordleFeedback, { LetterResult } from "./wordleFeedback";
+import wordleFeedback from "./wordleFeedback";
+import { LetterResult } from "../types/feedback.types.js";
 
 /*
 //////////

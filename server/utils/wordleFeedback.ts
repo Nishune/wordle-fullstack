@@ -1,14 +1,4 @@
-export enum LetterResult {
-  CORRECT = "correct",
-  MISPLACED = "misplaced",
-  INCORRECT = "incorrect",
-  PENDING = "pending",
-}
-
-export interface LetterFeedback {
-  letter: string;
-  result: LetterResult;
-}
+import { LetterResult, LetterFeedback } from "../types/feedback.types.js";
 
 export default function wordleFeedback(
   guess: string,
@@ -79,6 +69,5 @@ export default function wordleFeedback(
       }
     }
   }
-  console.log("Result array:", JSON.stringify(result, null, 2));
   return result;
 }
