@@ -2,6 +2,10 @@
 
 A fullstack implementation of the popular word guessing game Wordle, with customizable difficulty, scoring system, and leaderboard.
 
+## Demo
+
+Try out the game on the deployed website: https://wordle-fullstack-production.up.railway.app/
+
 ## Overview
 
 This project is a fullstack implementation of the Wordle game where players guess a secret word within 6 attempts. After each guess, players receive feedback on which letters are correct, exist in the word but in the wrong position, or don't exist in the word at all. The project includes a React frontend, an Express backend, and a MongoDB database to store high scores.
